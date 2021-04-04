@@ -1,0 +1,42 @@
+.badge{
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    display: flex;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+}
+.ava{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 40px;
+
+}
+.personal{
+
+}
+.name{
+    font-size: 19px;
+    padding-bottom: 15px;
+}
+.infoContainer{
+    padding-top: 10px;
+    display: flex;
+
+}
+.itemPoint{
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #918CA9;
+
+
+}
+.itemAnswer{
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #2A5885;
+    cursor: pointer;
+}
+.list:first-child{
+    width: 165px;
+}

@@ -1,0 +1,20 @@
+body{
+  background-color: #EDEEF0;
+}
+.wrapper{
+  width: 1000px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template: 48px 1fr / 164px 1fr;
+  grid-template-areas: "header header"
+                       "sidebar main";
+  grid-gap: 10px;
+
+}
+
+.main{
+  grid-area: main;
+  padding: 15px 0 10px;
+}
+
