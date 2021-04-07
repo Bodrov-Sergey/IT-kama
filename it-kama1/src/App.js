@@ -1,9 +1,10 @@
 import React from "react";
 import './App.css';
 import './zeroing.css'
-import Header from "./komponents/Header";
-import Aside from "./komponents/Aside";
-import Profile from "./komponents/Profile";
+import Header from "./komponents/Header/Header";
+import Aside from "./komponents/Aside/Aside";
+import Profile from "./komponents/Profile/Profile";
+import Messages from "./komponents/Messages/Messages";
 
 function App() {
     return (
@@ -11,7 +12,11 @@ function App() {
             <Header/>
             <Aside/>
             <main className={"main"}>
-                <Profile />
+                <Messages />
+
+                {/*<Profile />*/}
+
+
             </main>
 
 

@@ -1,6 +1,6 @@
 import React from "react";
 import s from './Badge.module.css';
-import ava from '../Icons/Avatar.jpg'
+import ava from '../../../Icons/Avatar.jpg'
 
 const Badge = () => {
     return <section className={s.badge}>

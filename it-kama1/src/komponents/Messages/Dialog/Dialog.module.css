@@ -1,0 +1,48 @@
+.container{
+    height: 71px;
+    padding: 10px 15px 10px 15px;
+    border-bottom: 1px solid #E7E8EC;
+    display: grid;
+    grid-template: 1fr / 50px 1fr;
+    grid-gap: 15px;
+}
+.container:hover{
+    background-color: #F7F8FA;
+    transition: 0.2s ease-out;
+}
+.ava{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.personal{
+    display: grid;
+    grid-template: 2fr 3fr / 1fr auto;
+}
+.name{
+    font-size: 13px;
+    font-weight: bold;
+    align-self: center;
+}
+.date{
+    font-size: 13px;
+    align-self: center;
+    color: #656565;
+}
+.preview{
+    font-size: 13px;
+    align-self: center;
+    color: #656565;
+}
+.counterUnread{
+    align-self: center;
+    justify-self: center;
+    font-size: 12px;
+    height: 25px;
+    width: 25px;
+    background-color: #2A5885;
+    border-radius: 50%;
+    color: white;
+
+}

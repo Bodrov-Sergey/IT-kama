@@ -1,0 +1,20 @@
+.posts{
+
+
+
+}
+.title{
+    background-color: #FFFFFF;
+    padding: 15px 20px;
+    font-size: 13px;
+    color: black;
+    border-bottom: 1px solid #DCE1E6;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    margin-bottom: -4px;
+    position: relative;
+
+}
+.container{
+
+}
