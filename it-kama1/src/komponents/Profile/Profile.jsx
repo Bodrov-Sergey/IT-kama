@@ -4,12 +4,15 @@ import Badge from './Badge/Badge'
 import NewPost from "./NewPost/NewPost";
 import Posts from "./Posts/Posts";
 
-const Profile = () => {
+
+
+const Profile = (props) => {
     return <section>
         <Badge />
         <NewPost />
-        <Posts />
+        <Posts postData={props.postData}/>
     </section>
 
 }
 export default Profile;
+

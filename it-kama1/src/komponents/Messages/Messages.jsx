@@ -2,15 +2,14 @@ import React from "react";
 import s from './Messages.module.css';
 import Dialog from "./Dialog/Dialog";
 
+
+
+
 const Messages = (props) => {
+    let messagesItem = props.messagesData.map(d => <Dialog name={d.name} lastMessage={d.lastMessageContext} date={d.lastMessageDate} unreadNum={d.unreadNum} id={d.id}/>)
     return (
         <section className={s.messages}>
-            <Dialog name='Ivan Ivanov' lastMessage='Hi, how are you?' date='08.04.2021' unreadenNum='1'/>
-            <Dialog name='Ivan Ivanov' lastMessage='Hi, how are you?' date='08.04.2021' unreadenNum='1'/>
-            <Dialog name='Ivan Ivanov' lastMessage='Hi, how are you?' date='08.04.2021' unreadenNum='1'/>
-            <Dialog name='Ivan Ivanov' lastMessage='Hi, how are you?' date='08.04.2021' unreadenNum='1'/>
-            <Dialog name='Ivan Ivanov' lastMessage='Hi, how are you?' date='08.04.2021' unreadenNum='1'/>
-
+            {messagesItem}
         </section>
     )
 }

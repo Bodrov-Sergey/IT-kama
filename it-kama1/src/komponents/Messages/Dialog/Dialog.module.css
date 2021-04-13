@@ -21,6 +21,7 @@
     grid-template: 2fr 3fr / 1fr auto;
 }
 .name{
+    color: black;
     font-size: 13px;
     font-weight: bold;
     align-self: center;
@@ -35,7 +36,7 @@
     align-self: center;
     color: #656565;
 }
-.counterUnread{
+.counterUnread_active {
     align-self: center;
     justify-self: center;
     font-size: 12px;
@@ -45,4 +46,7 @@
     border-radius: 50%;
     color: white;
 
+}
+.counterUnread {
+    opacity: 0;
 }
