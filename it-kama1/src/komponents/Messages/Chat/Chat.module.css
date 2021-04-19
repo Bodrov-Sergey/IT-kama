@@ -1,0 +1,65 @@
+.chatSection {
+    min-height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template: 50px 1fr 70px / 1fr;
+}
+
+.head{
+    border-bottom: 1px solid #DCE1E6;
+    display: grid;
+    grid-template: 1fr/ 148px 1fr 148px;
+}
+.headItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.backLink{
+    font-size: 14px;
+    color: #9EA6B0;
+}
+.companionName{
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+}
+.companionAva{
+    height:  30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.chatContainer{}
+.newMessageContainer{
+    padding: 10px 55px;
+    border-top: 1px solid #DCE1E6;
+    background-color: #FAFBFC;
+    display: grid;
+    grid-template: 1fr/ 1fr 50px;
+    grid-gap: 20px;
+}
+.messageInput{
+    height: 100%;
+    border: 1px solid #DCE1E6;
+    font-size: 13px;
+    outline: none;
+    -moz-appearance: none;
+    resize: none;
+    border-radius: 4px;
+    padding: 10px;
+}
+.sendButton{
+    align-self: center;
+    margin: auto;
+    justify-self: center;
+    font-size: 13px;
+    background-color: #5181B8;
+    padding: 7px 16px 8px;
+    color: #FFFFFF;
+    border-radius: 4px;
+}

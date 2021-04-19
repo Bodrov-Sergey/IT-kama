@@ -7,16 +7,16 @@ const Posts = (props) => {
 
     let postElements = props.postData.map(p => <Post name={p.name} text={p.text} likes={p.likes}/>);
 
-return (
-    <section className={s.posts}>
-        <h2 className={s.title}>
-            My posts
-        </h2>
-        <div className={s.container}>
-            {postElements}
-        </div>
+    return (
+        <section className={s.posts}>
+            <h2 className={s.title}>
+                My posts
+            </h2>
+            <div className={s.container}>
+                {postElements}
+            </div>
 
-    </section>
-)
+        </section>
+    )
 }
 export default Posts;

@@ -7,11 +7,11 @@ import {NavLink} from "react-router-dom";
 
 const Dialog = (props) => {
     let counterUnread = s.counterUnread_active
-    if (props.unreadNum == 0){
+    if (props.unreadNum == 0) {
         counterUnread = s.counterUnread;
     }
     return (
-        <NavLink to={'/messages/'+props.id} className={s.container}>
+        <NavLink to={'/messages/chat/' + props.id} className={s.container}>
             <img src={ava} className={s.ava}/>
             <div className={s.personal}>
                 <h2 className={s.name}>{props.name}</h2>
