@@ -1,6 +1,6 @@
 import React from "react";
 import reportWebVitals from './reportWebVitals';
-import state, {addNewPost, changeNewPostTextarea, store, subscribe} from "./redux/state";
+import {store} from "./redux/state";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -11,7 +11,7 @@ let renderFullTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} addNewPost={store.addNewPost.bind(store)} changeNewPostTextarea={store.changeNewPostTextarea.bind(store)}/>
+                <App state={state} dispatch={store.dispatch.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')

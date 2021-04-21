@@ -5,12 +5,12 @@ const NewPost = (props) => {
     let postTextarea = React.createRef();
 
     let newPostText = () => {
-        props.changeNewPostTextarea(postTextarea.current.value);
+        props.dispatch({type:'CHANGE-NEW-POST-TEXTAREA', content: postTextarea.current.value});
 
     };
     let newPostPublish = () => {
-        props.addNewPost(props.newPostText);
-        props.changeNewPostTextarea("");
+        props.dispatch({type: 'ADD-NEW-POST'});
+        props.dispatch({type:'CHANGE-NEW-POST-TEXTAREA', content: ''});
     };
 
     return <div className={s.container}>
