@@ -5,11 +5,11 @@ import NewPost from "./NewPost/NewPost";
 import Posts from "./Posts/Posts";
 
 
-
 const Profile = (props) => {
     return <section>
         <Badge/>
-        <NewPost newPostText={props.state.newPostText} addNewPost={props.addNewPost} changeNewPostTextarea={props.changeNewPostTextarea}/>
+        <NewPost newPostText={props.state.newPostText} addNewPost={props.addNewPost}
+                 changeNewPostTextarea={props.changeNewPostTextarea}/>
         <Posts postData={props.state.postData}/>
     </section>
 
