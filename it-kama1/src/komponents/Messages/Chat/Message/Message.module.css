@@ -1,0 +1,25 @@
+.messageContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+.myMessage{
+    align-self: flex-end;
+    display: inline-block;
+    max-width: 50%;
+    padding: 10px;
+    background-color: #A6B9CB;
+    border-radius: 50px;
+    border: 1px solid #DCE1E6;
+
+}
+.friendMessage{
+    align-self: flex-start;
+    display: inline-block;
+    max-width: 50%;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50px;
+    border: 1px solid #DCE1E6;
+}

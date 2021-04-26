@@ -1,16 +1,19 @@
 import React from "react";
 import s from "./NewPost.module.css"
+import {ADD_NEW_POST_ActionCreator, CHANGE_NEW_POST_TEXTAREA_ActionCreator} from "../../../redux/profile-reducer";
+
+
 
 const NewPost = (props) => {
     let postTextarea = React.createRef();
 
     let newPostText = () => {
-        props.dispatch({type:'CHANGE-NEW-POST-TEXTAREA', content: postTextarea.current.value});
+        props.dispatch(CHANGE_NEW_POST_TEXTAREA_ActionCreator(postTextarea.current.value));
 
     };
     let newPostPublish = () => {
-        props.dispatch({type: 'ADD-NEW-POST'});
-        props.dispatch({type:'CHANGE-NEW-POST-TEXTAREA', content: ''});
+        props.dispatch(ADD_NEW_POST_ActionCreator());
+        props.dispatch(CHANGE_NEW_POST_TEXTAREA_ActionCreator(''));
     };
 
     return <div className={s.container}>

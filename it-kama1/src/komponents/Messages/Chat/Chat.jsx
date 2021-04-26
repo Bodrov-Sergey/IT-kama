@@ -2,13 +2,20 @@ import React from "react";
 import s from './Chat.module.css';
 import {NavLink} from "react-router-dom";
 import ava from '../../../Icons/Avatar.jpg';
+import {ADD_NEW_MESSAGE_ActionCreator, CHANGE_MESSAGE_TEXTAREA_ActionCreator} from "../../../redux/messages-reducer";
+import Message from "./Message/Message";
 
 
 let Chat = (props) => {
-    let newMessageValue = React.createRef();
+    let messages = props.state.chatData.map(p => <Message text={p.text} dete={p.date} sender={p.sender} />);
+
+    let changeMessageTextarea = (e) => {
+        props.dispatch(CHANGE_MESSAGE_TEXTAREA_ActionCreator(e.target.value))
+    };
     let sendMessage = () => {
-        alert(newMessageValue.current.value)
-    }
+        props.dispatch(ADD_NEW_MESSAGE_ActionCreator());
+        props.dispatch(CHANGE_MESSAGE_TEXTAREA_ActionCreator(''));
+    };
 
     return (
         <section className={s.chatSection}>
@@ -24,10 +31,14 @@ let Chat = (props) => {
                 </div>
             </div>
             <div className={s.chatContainer}>
-                chat
+                <div className={s.messageContainer}>
+                    {messages}
+                </div>
+
             </div>
             <div className={s.newMessageContainer}>
-                <textarea className={s.messageInput} placeholder={"Message..."} ref={newMessageValue}/>
+                <textarea className={s.messageInput} placeholder={"Message..."} onChange={changeMessageTextarea}
+                          value={props.state.newMessageText}/>
                 <button className={s.sendButton} onClick={sendMessage}>Send</button>
             </div>
         </section>

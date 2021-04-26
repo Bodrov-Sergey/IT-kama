@@ -34,7 +34,17 @@
     border-radius: 50%;
 }
 
-.chatContainer{}
+.chatContainer{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 10px 10px 0px 10px;
+}
+.messageContainer{
+    width: 100%;
+}
+
+
 .newMessageContainer{
     padding: 10px 55px;
     border-top: 1px solid #DCE1E6;

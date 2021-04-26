@@ -19,8 +19,8 @@ function App(props) {
             <main className={"main"}>
                 <Route path='/profile'
                        render={() => <Profile state={props.state.profilePage} dispatch={props.dispatch}/>}/>
-                <Route exact path='/messages' render={() => <Messages state={props.state.messagesPage}/>}/>
-                <Route path='/messages/chat' render={() => <Chat state={props.state.messagesPage}/>}/>
+                <Route exact path='/messages' render={() => <Messages state={props.state.messagesPage} dispatch={props.dispatch}/>}/>
+                <Route path='/messages/chat' render={() => <Chat state={props.state.messagesPage} dispatch={props.dispatch}/>}/>
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/settings' render={() => <Settings/>}/>
 

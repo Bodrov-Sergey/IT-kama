@@ -1,6 +1,8 @@
+import profileReducer from "./profile-reducer";
+import messagesReducer from "./messages-reducer";
+
 export let store = {
     _subscriber() {
-        console.log('hi');
     },
     _state: {
         messagesPage: {
@@ -19,7 +21,13 @@ export let store = {
                     lastMessageDate: "08.04.2021",
                     unreadNum: '10'
                 },
-                {id: '3', name: 'Ivan Abramov', lastMessageContext: 'Great', lastMessageDate: "08.04.2021", unreadNum: '4'},
+                {
+                    id: '3',
+                    name: 'Ivan Abramov',
+                    lastMessageContext: 'Great',
+                    lastMessageDate: "08.04.2021",
+                    unreadNum: '4'
+                },
                 {
                     id: '4',
                     name: 'Max Semenov',
@@ -28,7 +36,32 @@ export let store = {
                     unreadNum: '1'
                 },
                 {id: '5', name: 'Petr Petrov', lastMessageContext: 'Me', lastMessageDate: "08.04.2021", unreadNum: '0'}
-            ]
+            ],
+            chatData: [
+                {
+                    date: '',
+                    text: 'hi',
+                    sender: '2',
+                },
+                {
+                    date: '',
+                    text: 'hello',
+                    sender: '1',
+                },
+                {
+                    date: '',
+                    text: 'how is your react studying?',
+                    sender: '2',
+                },
+                {
+                    date: '',
+                    text: 'is`s good, thanks',
+                    sender: '1',
+                },
+
+            ],
+            newMessageText: ''
+
 
         },
         profilePage: {
@@ -60,22 +93,10 @@ export let store = {
         this._subscriber = observer;
     },
 
-    dispatch(action){
-        switch (action.type){
-            case "ADD-NEW-POST":this._state.profilePage.postData.unshift(
-                {
-                    name: 'Bodrov Sergey',
-                    text: this._state.profilePage.newPostText,
-                    likes: 0
-                }
-            );
-                this._subscriber(this._state);
-            break;
-            case "CHANGE-NEW-POST-TEXTAREA":
-                this._state.profilePage.newPostText = action.content;
-                this._subscriber(this._state);
-            break;
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
 
-        }
+        this._subscriber(this._state);
     }
 }
