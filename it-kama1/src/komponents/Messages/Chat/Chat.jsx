@@ -13,7 +13,6 @@ let Chat = (props) => {
     };
     let sendMessage = () => {
         props.sendMessage();
-        props.changeMessageTextarea('');
     };
 
     return (

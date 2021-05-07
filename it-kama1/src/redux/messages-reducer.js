@@ -62,17 +62,21 @@ let initialState = {
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_MESSAGE_TEXTAREA:
-            state.newMessageText = action.content;
-            return state;
+            return  {
+                ...state,
+                newMessageText: action.content
+            };
         case ADD_NEW_MESSAGE:
-            state.chatData.push(
-                {
-                    date: '',
-                    text: state.newMessageText,
-                    sender: '1',
-                }
-            );
-            return state;
+            let message = {
+                date: '',
+                text: state.newMessageText,
+                sender: '1',
+            }
+            return  {
+                ...state,
+                chatData: [...state.chatData, message],
+                newMessageText: ''
+            };
         default:
             return state;
     }

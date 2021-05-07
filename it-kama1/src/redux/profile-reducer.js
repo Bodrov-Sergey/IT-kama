@@ -25,17 +25,21 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_NEW_POST:
-            state.postData.unshift(
-                {
-                    name: 'Bodrov Sergey',
-                    text: state.newPostText,
-                    likes: 0
-                }
-            );
-            return state
+            let post = {
+                name: 'Bodrov Sergey',
+                text: state.newPostText,
+                likes: 0
+            };
+            return  {
+                ...state,
+                postData: [post, ...state.postData],
+                newPostText: ''
+            }
         case CHANGE_NEW_POST_TEXTAREA:
-            state.newPostText = action.content;
-            return state
+            return  {
+                ...state,
+                newPostText: action.content
+            }
         default:
             return state;
     }

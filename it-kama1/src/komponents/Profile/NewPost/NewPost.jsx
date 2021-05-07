@@ -11,7 +11,6 @@ console.log(props)
     };
     let newPostPublish = () => {
         props.newPostPublish();
-        props.newPostText('');
     };
 
     return <div className={s.container}>
