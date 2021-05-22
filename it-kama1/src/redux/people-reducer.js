@@ -1,16 +1,15 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_PEOPLE = "SET_PEOPLE";
+const SET_PAGES_COUNT = "SET_PAGES_COUNT";
+const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
+
 
 let initialState = {
-    peopleData: [
-        {id: 1, name: 'Samoylova Julia', followed: true, status: 'welcome to my page'},
-        {id: 2, name: 'David Dust', followed: true, status: 'welcome to my page'},
-        {id: 3, name: 'Ilon Mask', followed: false, status: 'welcome to my page'},
-        {id: 4, name: 'Andrey JS', followed: false, status: 'welcome to my page'},
-        {id: 5, name: 'Egor Ignatyev', followed: false, status: 'welcome to my page'},
-        {id: 6, name: 'Valeriy Andreev', followed: true, status: 'welcome to my page'}
-    ]
+    peopleData: [],
+    pageSize: 10,
+    totalPeopleCount: 0,
+    activePage: 1
 };
 
 const peopleReducer = (state = initialState, action) => {
@@ -19,7 +18,7 @@ const peopleReducer = (state = initialState, action) => {
             return {
                 ...state,
                 peopleData: state.peopleData.map(u => {
-                    if (u.id === action.id){
+                    if (u.id === action.id) {
                         return {...u, followed: true};
                     }
                     return u;
@@ -29,7 +28,7 @@ const peopleReducer = (state = initialState, action) => {
             return {
                 ...state,
                 peopleData: state.peopleData.map(u => {
-                    if (u.id === action.id){
+                    if (u.id === action.id) {
                         return {...u, followed: false};
                     }
                     return u;
@@ -38,7 +37,19 @@ const peopleReducer = (state = initialState, action) => {
         case SET_PEOPLE:
             return {
                 ...state,
-                peopleData: [...state.peopleData, ...action.people_data]
+                peopleData: [...action.people_data]
+            }
+        case SET_PAGES_COUNT:
+            return {
+                ...state,
+                totalPeopleCount: action.count
+
+            }
+        case SET_ACTIVE_PAGE:
+            return {
+                ...state,
+                activePage: action.value
+
             }
         default:
             return state;
@@ -60,6 +71,18 @@ export const SET_PEOPLE_AC = (people_data) => {
     return {
         type: SET_PEOPLE,
         people_data: people_data
+    }
+}
+export const SET_PAGES_COUNT_AC = (count) => {
+    return {
+        type: SET_PAGES_COUNT,
+        count: count
+    }
+}
+export const SET_ACTIVE_PAGE_AC = (value) => {
+    return {
+        type: SET_ACTIVE_PAGE,
+        value: value
     }
 }
 

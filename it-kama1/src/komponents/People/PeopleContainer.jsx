@@ -1,11 +1,20 @@
 import React from "react";
-import People from './People'
+import PeopleAPIContainer from './PeopleAPIContainer'
 import {connect} from "react-redux";
-import {FOLLOW_AC, SET_PEOPLE_AC, UNFOLLOW_AC} from "../../redux/people-reducer";
+import {
+    FOLLOW_AC,
+    SET_ACTIVE_PAGE_AC,
+    SET_PAGES_COUNT_AC,
+    SET_PEOPLE_AC,
+    UNFOLLOW_AC
+} from "../../redux/people-reducer";
 
 let mapStateToProps = (state) => {
     return {
-        peopleData: state.peoplePage.peopleData
+        peopleData: state.peoplePage.peopleData,
+        pageSize: state.peoplePage.pageSize,
+        totalPeopleCount: state.peoplePage.totalPeopleCount,
+        activePage: state.peoplePage.activePage
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -18,7 +27,14 @@ let mapDispatchToProps = (dispatch) => {
         },
         setPeople: (peopleData) => {
             dispatch(SET_PEOPLE_AC(peopleData))
+        },
+        setPagesCount: (count) => {
+            dispatch(SET_PAGES_COUNT_AC(count))
+        },
+        setActivePage: (value) => {
+            dispatch(SET_ACTIVE_PAGE_AC(value))
         }
+
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(People);
+export default connect(mapStateToProps, mapDispatchToProps)(PeopleAPIContainer);
