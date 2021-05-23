@@ -3,13 +3,15 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_PEOPLE = "SET_PEOPLE";
 const SET_PAGES_COUNT = "SET_PAGES_COUNT";
 const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 
 let initialState = {
     peopleData: [],
     pageSize: 10,
     totalPeopleCount: 0,
-    activePage: 1
+    activePage: 1,
+    isFetching: false
 };
 
 const peopleReducer = (state = initialState, action) => {
@@ -51,38 +53,50 @@ const peopleReducer = (state = initialState, action) => {
                 activePage: action.value
 
             }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.bool
+
+            }
         default:
             return state;
     }
 }
-export const FOLLOW_AC = (id) => {
+export const follow = (id) => {
     return {
         type: FOLLOW,
         id: id
     }
 }
-export const UNFOLLOW_AC = (id) => {
+export const unfollow = (id) => {
     return {
         type: UNFOLLOW,
         id: id
     }
 }
-export const SET_PEOPLE_AC = (people_data) => {
+export const setPeople = (people_data) => {
     return {
         type: SET_PEOPLE,
         people_data: people_data
     }
 }
-export const SET_PAGES_COUNT_AC = (count) => {
+export const setPagesCount = (count) => {
     return {
         type: SET_PAGES_COUNT,
         count: count
     }
 }
-export const SET_ACTIVE_PAGE_AC = (value) => {
+export const setActivePage = (value) => {
     return {
         type: SET_ACTIVE_PAGE,
         value: value
+    }
+}
+export const toggleIsFetching = (bool) => {
+    return {
+        type: TOGGLE_IS_FETCHING,
+        bool
     }
 }
 

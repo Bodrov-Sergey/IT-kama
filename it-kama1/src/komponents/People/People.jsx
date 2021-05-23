@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./People.module.css";
-import searchIco from "../../Icons/search.svg";
 import baseAva from "../../Icons/Profile.svg";
 import {NavLink} from "react-router-dom";
 import leftArrow from "../../Icons/left-arrow.svg";
@@ -8,16 +7,7 @@ import rightArrow from "../../Icons/right-arrow.svg";
 
 const People = (props) => {
     return (
-        <section className={s.users}>
-            <div className={s.searchPanel}>
-                <img src={searchIco} alt="searchIcon" className={s.searchPanel__icon}/>
-                <input className={s.searchPanel__input} placeholder={"name..."}/>
-                <button className={s.searchPanel__button}>Find</button>
-            </div>
-            <div className={s.localHeader}>
-                <h1 className={s.mainTitle}>Following</h1>
-                <span className={s.counter}>{props.peopleData.length}</span>
-            </div>
+        <>
             <div className={s.following}>
                 {
                     props.peopleData.map(u => <div key={u.id} className={s.userSection}>
@@ -61,8 +51,7 @@ const People = (props) => {
                     window.scrollTo(0, 0)
                 }}>{props.pages.length}</button>
             </div>
-
-        </section>
+        </>
 
     )
 }
