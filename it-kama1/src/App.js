@@ -10,6 +10,7 @@ import Settings from "./komponents/Settings/Settings";
 import ChatContainer from "./komponents/Messages/Chat/ChatContainer";
 import MessagesContainer from "./komponents/Messages/MessagesContainer";
 import PeopleContainer from "./komponents/People/PeopleContainer";
+import ProfileContainer from "./komponents/Profile/ProfileContainer";
 
 
 function App (props) {
@@ -18,8 +19,8 @@ function App (props) {
             <Header/>
             <Aside/>
             <main className={"main"}>
-                <Route path='/profile'
-                       render={() => <Profile />} />
+                <Route path='/profile/:userId?'
+                       render={() => <ProfileContainer />} />
                 <Route exact path='/messages' render={() => <MessagesContainer />}/>
                 <Route path='/messages/chat' render={() => <ChatContainer />}/>
                 <Route path='/people' render={() => <PeopleContainer />}/>

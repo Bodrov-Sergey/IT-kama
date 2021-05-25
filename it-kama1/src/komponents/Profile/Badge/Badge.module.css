@@ -19,6 +19,9 @@
     font-size: 19px;
     padding-bottom: 15px;
 }
+.status{
+    padding-bottom: 15px;
+}
 .infoContainer{
     padding-top: 10px;
     display: flex;
@@ -31,6 +34,9 @@
 
 
 }
+.links{
+    color: black;
+}
 .itemAnswer{
     margin-bottom: 10px;
     font-size: 15px;
@@ -39,4 +45,11 @@
 }
 .list:first-child{
     width: 165px;
+}
+
+.preloaderContainer{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+
 }

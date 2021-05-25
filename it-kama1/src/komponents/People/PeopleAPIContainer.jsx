@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import * as axios from "axios";
 import People from "./People";
 import Preloader from "../common/Preloader/Preloader";
 import s from "./People.module.css";

@@ -11,9 +11,11 @@ const People = (props) => {
             <div className={s.following}>
                 {
                     props.peopleData.map(u => <div key={u.id} className={s.userSection}>
+                        <NavLink to={`/profile/${u.id}`}>
                         <img src={u.photos.small == null ? baseAva : u.photos.small} alt="ava" className={s.ava}/>
+                        </NavLink>
                         <div className={s.userInfoCont}>
-                            <h2 className={s.userName}>{u.name}</h2>
+                            <NavLink to={`/profile/${u.id}`}><h2 className={s.userName}>{u.name}</h2></NavLink>
                             <p className={s.status}>{u.status}</p>
                             <NavLink to={"/"}>Open dialog</NavLink>
                         </div>

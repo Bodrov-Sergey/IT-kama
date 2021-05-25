@@ -4,7 +4,7 @@ import preloader from '../../../Icons/download-anim.svg'
 
 const Preloader = (props) => {
     return (
-            <img src={preloader} className={s.preloader} style={{height: 80} }/>
+            <img src={preloader} className={s.preloader} style={{height: props.height} }/>
     )
 }
 export default Preloader;
