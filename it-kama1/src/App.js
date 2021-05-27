@@ -11,12 +11,13 @@ import ChatContainer from "./komponents/Messages/Chat/ChatContainer";
 import MessagesContainer from "./komponents/Messages/MessagesContainer";
 import PeopleContainer from "./komponents/People/PeopleContainer";
 import ProfileContainer from "./komponents/Profile/ProfileContainer";
+import HeaderContainer from "./komponents/Header/HeaderContainer";
 
 
 function App (props) {
     return (
         <div className={"wrapper"}>
-            <Header/>
+            <HeaderContainer />
             <Aside/>
             <main className={"main"}>
                 <Route path='/profile/:userId?'

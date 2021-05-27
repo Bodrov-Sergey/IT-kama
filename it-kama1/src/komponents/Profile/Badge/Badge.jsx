@@ -4,7 +4,8 @@ import Preloader from "../../common/Preloader/Preloader";
 import baseAva from '../../../Icons/Profile.svg'
 
 const Badge = (props) => {
-    if (props.profile) {
+    window.scrollTo(0, 0)
+    if (!props.isFetching && props.profile) {
 
         return <section className={s.badge}>
             <img src={props.profile.photos.large ? props.profile.photos.large :baseAva} className={s.ava}/>

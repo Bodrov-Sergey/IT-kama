@@ -1,6 +1,7 @@
 const ADD_NEW_POST = "ADD-NEW-POST";
 const CHANGE_NEW_POST_TEXTAREA = "CHANGE-NEW-POST-TEXTAREA";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 
 let initialState = {
@@ -22,7 +23,8 @@ let initialState = {
         }
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    isFetching: false
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -48,6 +50,12 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: action.profile
             }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.bool
+
+            }
 
         default:
             return state;
@@ -68,6 +76,12 @@ export const setUserProfile = (profile) => {
     return {
         type: SET_USER_PROFILE,
         profile
+    }
+}
+export const toggleIsFetching = (bool) => {
+    return {
+        type: TOGGLE_IS_FETCHING,
+        bool
     }
 }
 

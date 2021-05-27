@@ -7,7 +7,7 @@ import PostsContainer from "./Posts/PostsContainer";
 
 const Profile = (props) => {
     return <section>
-        <Badge profile={props.profile}/>
+        <Badge profile={props.profile} isFetching={props.isFetching}/>
         <NewPostContainer />
         <PostsContainer/>
     </section>

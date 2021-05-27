@@ -4,7 +4,19 @@
     padding: 8px 15px;
     background-color: #FFFFFF;
     border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
 }
 .img{
     height: 100%;
+}
+.loginBlock{
+
+}
+.button{
+    font-size: 13px;
+    background-color: #5181B8;
+    padding: 7px 16px 8px;
+    color: #FFFFFF;
+    border-radius: 4px;
 }
