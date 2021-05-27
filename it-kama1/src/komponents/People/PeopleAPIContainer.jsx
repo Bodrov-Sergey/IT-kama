@@ -9,7 +9,8 @@ import searchIco from "../../Icons/search.svg";
 class PeopleAPIContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.activePage}&count=${this.props.pageSize}`).then(
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.activePage}&count=${this.props.pageSize}`,
+            {withCredentials: true}).then(
             response => {
                 this.props.toggleIsFetching(false)
                 this.props.setPeople(response.data.items)
@@ -21,7 +22,7 @@ class PeopleAPIContainer extends React.Component {
     setActivePage = (value) => {
         this.props.setActivePage(value);
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${value}&count=${this.props.pageSize}`).then(
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${value}&count=${this.props.pageSize}`, {withCredentials: true}).then(
             response => {
                 this.props.toggleIsFetching(false)
                 this.props.setPeople(response.data.items);
