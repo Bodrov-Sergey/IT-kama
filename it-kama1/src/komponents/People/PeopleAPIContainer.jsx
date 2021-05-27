@@ -1,5 +1,4 @@
 import React from "react";
-import * as axios from "axios";
 import People from "./People";
 import Preloader from "../common/Preloader/Preloader";
 import s from "./People.module.css";
@@ -10,12 +9,11 @@ import {usersAPI} from "../../api/api";
 class PeopleAPIContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.activePage}&count=${this.props.pageSize}`,
-            {withCredentials: true}).then(
+        usersAPI.getUsers(this.props.activePage, this.props.pageSize).then(
             response => {
                 this.props.toggleIsFetching(false)
-                this.props.setPeople(response.data.items)
-                this.props.setPagesCount(response.data.totalCount)
+                this.props.setPeople(response.items)
+                this.props.setPagesCount(response.totalCount)
             }
         );
     }
@@ -76,6 +74,7 @@ class PeopleAPIContainer extends React.Component {
                         setPreviousPage={this.setPreviousPage}
                         setNextPage={this.setNextPage}
                         toggleDisabled={this.props.toggleDisabled}
+                        usersAPI={usersAPI}
 
                 />
             </section>

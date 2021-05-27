@@ -1,13 +1,14 @@
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 let initialState = {
     userId: null,
     email: null,
     login: null,
     isFetching: false,
-    isAuth: false
+    isAuth: false,
+    profile: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -25,6 +26,11 @@ const authReducer = (state = initialState, action) => {
                 isFetching: action.bool
 
             }
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state;
     }
@@ -41,6 +47,12 @@ export const setAuthUserData = (userId, email, login) => {
     return{
         type: SET_AUTH_USER_DATA,
         data: {userId, email, login}
+    }
+}
+export const setUserProfile = (profile) => {
+    return {
+        type: SET_USER_PROFILE,
+        profile
     }
 }
 

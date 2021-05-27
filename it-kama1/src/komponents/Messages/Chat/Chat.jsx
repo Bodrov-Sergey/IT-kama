@@ -1,7 +1,7 @@
 import React from "react";
 import s from './Chat.module.css';
 import {NavLink} from "react-router-dom";
-import ava from '../../../Icons/Avatar.jpg';
+import baseAva from '../../../Icons/Profile.svg';
 import Message from "./Message/Message";
 
 
@@ -25,7 +25,7 @@ let Chat = (props) => {
                     <h1 className={s.companionName}>Ivan Ivanov</h1>
                 </div>
                 <div className={s.headItem}>
-                    <img className={s.companionAva} src={ava}/>
+                    <img className={s.companionAva} src={baseAva}/>
                 </div>
             </div>
             <div className={s.chatContainer}>

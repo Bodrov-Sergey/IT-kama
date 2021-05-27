@@ -1,5 +1,5 @@
 const CHANGE_MESSAGE_TEXTAREA = 'CHANGE-MESSAGE-TEXTAREA';
-const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
+const SEND_MESSAGE = "SEND_MESSAGE";
 
 let initialState = {
     messagesData: [
@@ -66,7 +66,7 @@ const messagesReducer = (state = initialState, action) => {
                 ...state,
                 newMessageText: action.content
             };
-        case ADD_NEW_MESSAGE:
+        case SEND_MESSAGE:
             let message = {
                 date: '',
                 text: state.newMessageText,
@@ -82,15 +82,15 @@ const messagesReducer = (state = initialState, action) => {
     }
 }
 
-export const CHANGE_MESSAGE_TEXTAREA_ActionCreator = (text) => {
+export const changeMessageTextarea = (text) => {
     return {
         type: CHANGE_MESSAGE_TEXTAREA,
         content: text
     }
 }
-export const ADD_NEW_MESSAGE_ActionCreator = () => {
+export const sendMessage = () => {
     return {
-        type: ADD_NEW_MESSAGE
+        type: SEND_MESSAGE
     }
 }
 

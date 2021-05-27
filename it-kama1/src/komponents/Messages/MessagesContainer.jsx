@@ -7,12 +7,7 @@ let mapStateToProps = (state) => {
         messagesData: state.messagesPage.messagesData
     }
 }
-let mapDispatchToProps = (dispatch) => {
-    return {
 
-    }
-}
-
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
+const MessagesContainer = connect(mapStateToProps, {})(Messages);
 
 export default MessagesContainer;

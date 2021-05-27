@@ -20,3 +20,15 @@
     color: #FFFFFF;
     border-radius: 4px;
 }
+.userInfo{
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+}
+.fullName{
+    margin-right: 10px;
+}
+.userAva{
+    height: 100%;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialog.module.css';
 
 //УБРАТЬ ИМПОРТ ПОТОМ ПЕРЕДЕЛАТЬ ЧЕРЕЗ ПРОПСУ
-import ava from '../../../Icons/Avatar.jpg';
+import baseAva from '../../../Icons/Profile.svg';
 import {NavLink} from "react-router-dom";
 
 const Dialog = (props) => {
@@ -12,7 +12,7 @@ const Dialog = (props) => {
     }
     return (
         <NavLink to={'/messages/chat/' + props.id} className={s.container}>
-            <img src={ava} className={s.ava}/>
+            <img src={baseAva} className={s.ava}/>
             <div className={s.personal}>
                 <h2 className={s.name}>{props.name}</h2>
                 <span className={s.date}>{props.date}</span>

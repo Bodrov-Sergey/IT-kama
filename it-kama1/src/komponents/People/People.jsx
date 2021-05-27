@@ -4,7 +4,6 @@ import baseAva from "../../Icons/Profile.svg";
 import {NavLink} from "react-router-dom";
 import leftArrow from "../../Icons/left-arrow.svg";
 import rightArrow from "../../Icons/right-arrow.svg";
-import * as axios from "axios";
 
 const People = (props) => {
 
@@ -25,10 +24,7 @@ const People = (props) => {
                             {u.followed
                                 ? <button className={s.actionButtonUnfollow} disabled={props.disabled.some(id => id === u.id)} onClick={() => {
                                     props.toggleDisabled(true, u.id);
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {"API-KEY": '66ac6b9a-22ef-4bd7-aad2-324b64bf3872'}
-                                    }).then(
+                                    props.usersAPI.unfollowUser(u.id).then(
                                         response => {
                                             props.toggleDisabled(false, u.id);
                                             props.unfollow(u.id)
@@ -37,13 +33,7 @@ const People = (props) => {
                                 }}>Unfollow</button>
                                 : <button disabled={props.disabled.some(id => id === u.id)} onClick={() => {
                                     props.toggleDisabled(true, u.id);
-                                    let m = props.disabled
-                                    debugger
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                                        {
-                                            withCredentials: true,
-                                            headers: {"API-KEY": "66ac6b9a-22ef-4bd7-aad2-324b64bf3872"}
-                                        }).then(
+                                    props.usersAPI.unfollowUser(u.id).then(
                                         response => {
                                             props.toggleDisabled(false, u.id);
                                             props.follow(u.id)

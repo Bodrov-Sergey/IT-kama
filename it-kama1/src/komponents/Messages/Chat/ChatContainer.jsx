@@ -1,5 +1,5 @@
 import React from "react";
-import {ADD_NEW_MESSAGE_ActionCreator, CHANGE_MESSAGE_TEXTAREA_ActionCreator} from "../../../redux/messages-reducer";
+import {changeMessageTextarea,sendMessage} from "../../../redux/messages-reducer";
 import Chat from "./Chat";
 import {connect} from "react-redux";
 
@@ -10,20 +10,8 @@ let mapStateToProps = (state) => {
         newMessageText: state.messagesPage.newMessageText
     }
 }
-let mapDispatchToProps = (dispatch) => {
-    return {
-        changeMessageTextarea: (body) =>{
-            dispatch(CHANGE_MESSAGE_TEXTAREA_ActionCreator(body));
-        },
-        sendMessage: () => {
-            dispatch(ADD_NEW_MESSAGE_ActionCreator());
-            dispatch(CHANGE_MESSAGE_TEXTAREA_ActionCreator(''));
-        }
 
-    }
-}
-
-const ChatContainer = connect(mapStateToProps, mapDispatchToProps)(Chat);
+const ChatContainer = connect(mapStateToProps, {sendMessage, changeMessageTextarea})(Chat);
 
 
 export default ChatContainer;
