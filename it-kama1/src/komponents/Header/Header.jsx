@@ -3,19 +3,19 @@ import mainLogo from "../../Icons/Main-logo.svg"
 import s from "./Header.module.css"
 import {NavLink} from "react-router-dom";
 import baseAva from "../../Icons/Profile.svg";
+import Preloader from "../common/Preloader/Preloader";
+import UserAuthInfo from "./UserAuthInfo/UserAuthInfo";
 
 const Header = (props) => {
     return <header className={s.header}>
         <img src={mainLogo} alt={"logo"} className={s.img}/>
         <div className={s.loginBlock}>
-            {(props.isAuth && !props.isFetching) ?
-                <div className={s.userInfo}>
-                    <h2 className={s.fullName}>{props.profile.fullName}</h2>
-                    <img className={s.userAva} src={props.profile.photos.small ? props.profile.photos.small :baseAva}/>
-                </div>
-                : <NavLink to={"/login"}>
-                <button className={s.button}>login</button>
-            </NavLink>}
+            { (props.isAuth && !props.isFetching) ?
+                <UserAuthInfo profile={props.profile} />
+                :
+                <>{props.isAuth ? <Preloader height={30} />: <NavLink to={"/login"}>
+                        <button className={s.button}>login</button>
+                    </NavLink>}</>}
 
 
         </div>
