@@ -1,7 +1,7 @@
 import React from "react";
 import PeopleAPIContainer from './PeopleAPIContainer'
 import {connect} from "react-redux";
-import {follow, setActivePage, setPagesCount, setPeople, toggleIsFetching, unfollow} from "../../redux/people-reducer";
+import {follow, setActivePage, setPagesCount, setPeople, toggleIsFetching, unfollow, toggleDisabled} from "../../redux/people-reducer";
 
 
 let mapStateToProps = (state) => {
@@ -10,8 +10,10 @@ let mapStateToProps = (state) => {
         pageSize: state.peoplePage.pageSize,
         totalPeopleCount: state.peoplePage.totalPeopleCount,
         activePage: state.peoplePage.activePage,
-        isFetching: state.peoplePage.isFetching
+        isFetching: state.peoplePage.isFetching,
+        disabled: state.peoplePage.disabled
+
     }
 }
 
-export default connect(mapStateToProps, {follow, unfollow, setPeople, setPagesCount, setActivePage, toggleIsFetching} )(PeopleAPIContainer);
+export default connect(mapStateToProps, {follow, unfollow, setPeople, setPagesCount, setActivePage, toggleIsFetching, toggleDisabled} )(PeopleAPIContainer);

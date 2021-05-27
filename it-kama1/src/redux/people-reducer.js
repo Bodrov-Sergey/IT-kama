@@ -4,6 +4,7 @@ const SET_PEOPLE = "SET_PEOPLE";
 const SET_PAGES_COUNT = "SET_PAGES_COUNT";
 const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_DISABLED = "TOGGLE_DISABLED";
 
 
 let initialState = {
@@ -11,7 +12,8 @@ let initialState = {
     pageSize: 10,
     totalPeopleCount: 0,
     activePage: 1,
-    isFetching: false
+    isFetching: false,
+    disabled: []
 };
 
 const peopleReducer = (state = initialState, action) => {
@@ -59,6 +61,14 @@ const peopleReducer = (state = initialState, action) => {
                 isFetching: action.bool
 
             }
+        case TOGGLE_DISABLED:
+            debugger
+            return {
+                ...state,
+                disabled: action.bool ? [...state.disabled, action.id] : [state.disabled.filter(id => id != action.id)]
+
+
+            }
         default:
             return state;
     }
@@ -97,6 +107,13 @@ export const toggleIsFetching = (bool) => {
     return {
         type: TOGGLE_IS_FETCHING,
         bool
+    }
+}
+export const toggleDisabled = (bool, id) => {
+    return {
+        type: TOGGLE_DISABLED,
+        bool,
+        id
     }
 }
 

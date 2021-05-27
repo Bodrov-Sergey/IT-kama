@@ -4,6 +4,7 @@ import People from "./People";
 import Preloader from "../common/Preloader/Preloader";
 import s from "./People.module.css";
 import searchIco from "../../Icons/search.svg";
+import {usersAPI} from "../../api/api";
 
 
 class PeopleAPIContainer extends React.Component {
@@ -22,13 +23,10 @@ class PeopleAPIContainer extends React.Component {
     setActivePage = (value) => {
         this.props.setActivePage(value);
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${value}&count=${this.props.pageSize}`, {withCredentials: true}).then(
-            response => {
-                this.props.toggleIsFetching(false)
-                this.props.setPeople(response.data.items);
-
-            }
-        );
+        usersAPI.getUsers(value, this.props.pageSize).then(response => {
+            this.props.toggleIsFetching(false);
+            this.props.setPeople(response.items);
+        })
 
     }
     setNextPage = () => {
@@ -55,6 +53,7 @@ class PeopleAPIContainer extends React.Component {
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
         }
+
         return (
             <section className={s.users}>
                 <div className={s.searchPanel}>
@@ -67,11 +66,17 @@ class PeopleAPIContainer extends React.Component {
                     <span className={s.counter}>{this.props.peopleData.length}</span>
                 </div>
                 {this.props.isFetching ? <div className={s.preloaderContainer}><Preloader height={80}/></div> : null}
-                <People peopleData={this.props.peopleData} pages={pages} activePage={this.props.activePage}
-                        follow={this.props.follow} unfollow={this.props.unfollow}
+                <People peopleData={this.props.peopleData}
+                        pages={pages}
+                        activePage={this.props.activePage}
+                        follow={this.props.follow}
+                        unfollow={this.props.unfollow}
+                        disabled={this.props.disabled}
                         setActivePage={this.setActivePage}
                         setPreviousPage={this.setPreviousPage}
                         setNextPage={this.setNextPage}
+                        toggleDisabled={this.props.toggleDisabled}
+
                 />
             </section>
         )
