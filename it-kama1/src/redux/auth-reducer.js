@@ -1,6 +1,6 @@
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_CARD = "SET_CARD";
 
 let initialState = {
     userId: null,
@@ -8,7 +8,7 @@ let initialState = {
     login: null,
     isFetching: false,
     isAuth: false,
-    profile: null,
+    card: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -26,10 +26,10 @@ const authReducer = (state = initialState, action) => {
                 isFetching: action.bool
 
             }
-        case SET_USER_PROFILE:
+        case SET_CARD:
             return {
                 ...state,
-                profile: action.profile
+                card: action.card
             }
         default:
             return state;
@@ -49,10 +49,10 @@ export const setAuthUserData = (userId, email, login) => {
         data: {userId, email, login}
     }
 }
-export const setUserProfile = (profile) => {
+export const setCard = (card) => {
     return {
-        type: SET_USER_PROFILE,
-        profile
+        type: SET_CARD,
+        card
     }
 }
 

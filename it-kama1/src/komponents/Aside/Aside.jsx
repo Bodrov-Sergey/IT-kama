@@ -15,7 +15,7 @@ const Aside = () => {
     return <aside className={s.sidebar}>
         <nav>
             <ul>
-                <li className={s.item}><NavLink className={s.link} to={"/profile"}><img src={profileImage} className={s.ico}/><span className={s.title}>Profile</span></NavLink></li>
+                <li className={s.item}><NavLink className={s.link} to={`/profile`}><img src={profileImage} className={s.ico}/><span className={s.title}>Profile</span></NavLink></li>
                 <li className={s.item}><NavLink className={s.link} to={"/messages"}><img src={messageImage} className={s.ico}/><span className={s.title}>Messages</span></NavLink></li>
                 <li className={s.item}><NavLink className={s.link} to={"/news"}><img src={newsImage} className={s.ico}/><span className={s.title}>News</span></NavLink></li>
                 <li className={s.item}><NavLink className={s.link} to={"/people"}><img src={peopleImage} className={s.ico}/><span className={s.title}>People</span></NavLink></li>

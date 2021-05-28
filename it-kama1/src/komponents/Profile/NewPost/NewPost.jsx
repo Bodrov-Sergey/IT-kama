@@ -4,7 +4,6 @@ import s from "./NewPost.module.css"
 
 
 const NewPost = (props) => {
-console.log(props)
 
     let newPostText = (e) => {
         props.newPostText(e.target.value);

@@ -23,23 +23,11 @@ const People = (props) => {
                         <div className={s.buttonCont}>
                             {u.followed
                                 ? <button className={s.actionButtonUnfollow} disabled={props.disabled.some(id => id === u.id)} onClick={() => {
-                                    props.toggleDisabled(true, u.id);
-                                    props.usersAPI.unfollowUser(u.id).then(
-                                        response => {
-                                            props.toggleDisabled(false, u.id);
-                                            props.unfollow(u.id)
-                                        }
-                                    );
+                                    props.accessUnfollow(u.id)
                                 }}>Unfollow</button>
-                                : <button disabled={props.disabled.some(id => id === u.id)} onClick={() => {
-                                    props.toggleDisabled(true, u.id);
-                                    props.usersAPI.unfollowUser(u.id).then(
-                                        response => {
-                                            props.toggleDisabled(false, u.id);
-                                            props.follow(u.id)
-                                        }
-                                    );
-                                }} className={s.actionButtonFollow}>Follow</button>}
+                                : <button className={s.actionButtonFollow} disabled={props.disabled.some(id => id === u.id)} onClick={() => {
+                                    props.accessFollow(u.id);
+                                }} >Follow</button>}
                                     </div>
                                     </div>)
                                 }

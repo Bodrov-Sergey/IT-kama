@@ -1,8 +1,10 @@
+import {usersAPI} from "../api/api";
+import {follow, toggleDisabled} from "./people-reducer";
+
 const ADD_NEW_POST = "ADD-NEW-POST";
 const CHANGE_NEW_POST_TEXTAREA = "CHANGE-NEW-POST-TEXTAREA";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-
 
 
 let initialState = {
@@ -81,10 +83,22 @@ export const setUserProfile = (profile) => {
         profile
     }
 }
+
 export const toggleIsFetching = (bool) => {
     return {
         type: TOGGLE_IS_FETCHING,
         bool
+    }
+}
+export const getUser = (id) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUser(id).then(
+            response => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUserProfile(response.data))
+            }
+        );
     }
 }
 

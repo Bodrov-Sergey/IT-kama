@@ -4,28 +4,17 @@ import Preloader from "../common/Preloader/Preloader";
 import s from "./People.module.css";
 import searchIco from "../../Icons/search.svg";
 import {usersAPI} from "../../api/api";
+import {accessFollow} from "../../redux/people-reducer";
 
 
 class PeopleAPIContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        usersAPI.getUsers(this.props.activePage, this.props.pageSize).then(
-            response => {
-                this.props.toggleIsFetching(false)
-                this.props.setPeople(response.items)
-                this.props.setPagesCount(response.totalCount)
-            }
-        );
+        this.props.getUsers(this.props.activePage, this.props.pageSize);
     }
 
     setActivePage = (value) => {
         this.props.setActivePage(value);
-        this.props.toggleIsFetching(true)
-        usersAPI.getUsers(value, this.props.pageSize).then(response => {
-            this.props.toggleIsFetching(false);
-            this.props.setPeople(response.items);
-        })
-
+        this.props.getUsers(value, this.props.pageSize);
     }
     setNextPage = () => {
         let pagesCount = Math.ceil(this.props.totalPeopleCount / this.props.pageSize);
@@ -75,6 +64,8 @@ class PeopleAPIContainer extends React.Component {
                         setNextPage={this.setNextPage}
                         toggleDisabled={this.props.toggleDisabled}
                         usersAPI={usersAPI}
+                        accessFollow={this.props.accessFollow}
+                        accessUnfollow={this.props.accessUnfollow}
 
                 />
             </section>

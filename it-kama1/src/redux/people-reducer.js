@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_PEOPLE = "SET_PEOPLE";
@@ -7,6 +9,7 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_DISABLED = "TOGGLE_DISABLED";
 
 
+
 let initialState = {
     peopleData: [],
     pageSize: 10,
@@ -14,6 +17,7 @@ let initialState = {
     activePage: 1,
     isFetching: false,
     disabled: []
+
 };
 
 const peopleReducer = (state = initialState, action) => {
@@ -62,7 +66,6 @@ const peopleReducer = (state = initialState, action) => {
 
             }
         case TOGGLE_DISABLED:
-            debugger
             return {
                 ...state,
                 disabled: action.bool ? [...state.disabled, action.id] : [state.disabled.filter(id => id != action.id)]
@@ -76,31 +79,31 @@ const peopleReducer = (state = initialState, action) => {
 export const follow = (id) => {
     return {
         type: FOLLOW,
-        id: id
+        id
     }
 }
 export const unfollow = (id) => {
     return {
         type: UNFOLLOW,
-        id: id
+        id
     }
 }
 export const setPeople = (people_data) => {
     return {
         type: SET_PEOPLE,
-        people_data: people_data
+        people_data
     }
 }
 export const setPagesCount = (count) => {
     return {
         type: SET_PAGES_COUNT,
-        count: count
+        count
     }
 }
 export const setActivePage = (value) => {
     return {
         type: SET_ACTIVE_PAGE,
-        value: value
+        value
     }
 }
 export const toggleIsFetching = (bool) => {
@@ -116,5 +119,38 @@ export const toggleDisabled = (bool, id) => {
         id
     }
 }
-
+export const getUsers = (activePage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        usersAPI.getUsers(activePage, pageSize).then(
+            response => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setPeople(response.items))
+                dispatch(setPagesCount(response.totalCount))
+            }
+        );
+    }
+}
+export const accessFollow = (id) => {
+    return (dispatch) => {
+        dispatch(toggleDisabled(true, id))
+        usersAPI.followUser(id).then(
+            response => {
+                dispatch(toggleDisabled(false, id))
+                dispatch(follow(id))
+            }
+        );
+    }
+}
+export const accessUnfollow = (id) => {
+    return (dispatch) => {
+        dispatch(toggleDisabled(true, id))
+        usersAPI.unfollowUser(id).then(
+            response => {
+                dispatch(toggleDisabled(false, id))
+                dispatch(unfollow(id))
+            }
+        );
+    }
+}
 export default peopleReducer;
