@@ -3,9 +3,6 @@ import People from "./People";
 import Preloader from "../common/Preloader/Preloader";
 import s from "./People.module.css";
 import searchIco from "../../Icons/search.svg";
-import {usersAPI} from "../../api/api";
-import {accessFollow} from "../../redux/people-reducer";
-
 
 class PeopleAPIContainer extends React.Component {
     componentDidMount() {
@@ -56,14 +53,10 @@ class PeopleAPIContainer extends React.Component {
                 <People peopleData={this.props.peopleData}
                         pages={pages}
                         activePage={this.props.activePage}
-                        follow={this.props.follow}
-                        unfollow={this.props.unfollow}
                         disabled={this.props.disabled}
                         setActivePage={this.setActivePage}
                         setPreviousPage={this.setPreviousPage}
                         setNextPage={this.setNextPage}
-                        toggleDisabled={this.props.toggleDisabled}
-                        usersAPI={usersAPI}
                         accessFollow={this.props.accessFollow}
                         accessUnfollow={this.props.accessUnfollow}
 

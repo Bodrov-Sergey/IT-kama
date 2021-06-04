@@ -1,6 +1,4 @@
 import {usersAPI} from "../api/api";
-import {follow, toggleDisabled} from "./people-reducer";
-
 const ADD_NEW_POST = "ADD-NEW-POST";
 const CHANGE_NEW_POST_TEXTAREA = "CHANGE-NEW-POST-TEXTAREA";
 const SET_USER_PROFILE = "SET_USER_PROFILE";

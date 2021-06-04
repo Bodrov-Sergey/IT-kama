@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const SET_CARD = "SET_CARD";
@@ -53,6 +55,18 @@ export const setCard = (card) => {
     return {
         type: SET_CARD,
         card
+    }
+}
+export const authMe = () => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        usersAPI.authMe().then(
+            response => {
+                dispatch(toggleIsFetching(false));
+                dispatch(setAuthUserData(response.data.data.id, response.data.data.email, response.data.data.login));
+                localStorage.setItem("id", response.data.data.id)
+                usersAPI.getMe(response.data.data.id).then(response=>{dispatch(setCard(response.data))})
+            });
     }
 }
 
