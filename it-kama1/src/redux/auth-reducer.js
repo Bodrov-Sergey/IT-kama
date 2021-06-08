@@ -2,6 +2,7 @@ import {usersAPI} from "../api/api";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_IS_AUTH = "TOGGLE_IS_AUTH";
 const SET_CARD = "SET_CARD";
 
 let initialState = {
@@ -18,14 +19,19 @@ const authReducer = (state = initialState, action) => {
         case SET_AUTH_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.data
 
             }
         case TOGGLE_IS_FETCHING:
             return {
                 ...state,
                 isFetching: action.bool
+
+            }
+        case TOGGLE_IS_AUTH:
+            return {
+                ...state,
+                isAuth: action.bool
 
             }
         case SET_CARD:
@@ -41,6 +47,12 @@ const authReducer = (state = initialState, action) => {
 export const toggleIsFetching = (bool) => {
     return {
         type: TOGGLE_IS_FETCHING,
+        bool
+    }
+}
+export const toggleIsAuth = (bool) => {
+    return {
+        type: TOGGLE_IS_AUTH,
         bool
     }
 }
@@ -62,11 +74,11 @@ export const authMe = () => {
         dispatch(toggleIsFetching(true));
         usersAPI.authMe().then(
             response => {
-                dispatch(toggleIsFetching(false));
                 dispatch(setAuthUserData(response.data.data.id, response.data.data.email, response.data.data.login));
                 localStorage.setItem("id", response.data.data.id)
-                usersAPI.getMe(response.data.data.id).then(response=>{dispatch(setCard(response.data))})
-            });
+                response.data.messages[0] === "You are not authorized" ? dispatch(toggleIsFetching(false)) :  usersAPI.getMe(response.data.data.id).then(response=>{dispatch(setCard(response.data)); dispatch(toggleIsFetching(false)); dispatch(toggleIsAuth(true));});
+
+            })
     }
 }
 

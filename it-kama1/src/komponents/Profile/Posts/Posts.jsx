@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 
 
 const Posts = (props) => {
-    let postElements = props.postData.map(p => <Post name={p.name} text={p.text} likes={p.likes}/>);
+    let postElements = props.postData.map(p => <Post key={p.id} name={p.name} text={p.text} likes={p.likes}/>);
 
     return (
         <section className={s.posts}>

@@ -12,6 +12,7 @@ import MessagesContainer from "./komponents/Messages/MessagesContainer";
 import PeopleContainer from "./komponents/People/PeopleContainer";
 import ProfileContainer from "./komponents/Profile/ProfileContainer";
 import HeaderContainer from "./komponents/Header/HeaderContainer";
+import LoginContainer from "./komponents/Login/LoginContainer";
 
 
 function App (props) {
@@ -23,6 +24,7 @@ function App (props) {
                 <Route path='/profile/:userId?'
                        render={() => <ProfileContainer />} />
                 <Route exact path='/messages' render={() => <MessagesContainer />}/>
+                <Route exact path='/login' render={() => <LoginContainer />}/>
                 <Route path='/messages/chat' render={() => <ChatContainer />}/>
                 <Route path='/people' render={() => <PeopleContainer />}/>
                 <Route path='/news' render={() => <News/>}/>
