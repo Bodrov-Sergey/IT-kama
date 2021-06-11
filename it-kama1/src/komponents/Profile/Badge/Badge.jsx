@@ -2,6 +2,7 @@ import React from "react";
 import s from './Badge.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import baseAva from '../../../Icons/Profile.svg'
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const Badge = (props) => {
     window.scrollTo(0, 0)
@@ -11,7 +12,8 @@ const Badge = (props) => {
             <img src={props.profile.photos.large ? props.profile.photos.large :baseAva} className={s.ava}/>
             <div className={s.personal}>
                 <h1 className={s.name}>{props.profile.fullName}</h1>
-                <h2 className={s.status}>{props.profile.aboutMe}</h2>
+                {/*<ProfileStatus content={props.profile.aboutMe} />*/}
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 <div className={s.infoContainer}>
                     <ul className={s.list}>
                         {props.profile.contacts.facebook?  <li className={s.itemPoint}>facebook:</li>: null}

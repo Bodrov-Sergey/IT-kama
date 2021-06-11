@@ -1,7 +1,9 @@
-import {usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
+
 const ADD_NEW_POST = "ADD-NEW-POST";
 const CHANGE_NEW_POST_TEXTAREA = "CHANGE-NEW-POST-TEXTAREA";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS = "SET_STATUS";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 
@@ -26,6 +28,7 @@ let initialState = {
     newPostText: '',
     profile: null,
     isFetching: false,
+    status: ""
 
 };
 
@@ -51,6 +54,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 profile: action.profile
+            }
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
             }
         case TOGGLE_IS_FETCHING:
             return {
@@ -81,6 +89,12 @@ export const setUserProfile = (profile) => {
         profile
     }
 }
+export const setUserStatus = (status) => {
+    return {
+        type: SET_STATUS,
+        status
+    }
+}
 
 export const toggleIsFetching = (bool) => {
     return {
@@ -91,10 +105,30 @@ export const toggleIsFetching = (bool) => {
 export const getUser = (id) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
-        usersAPI.getUser(id).then(
+        profileAPI.getUser(id).then(
             response => {
                 dispatch(toggleIsFetching(false))
                 dispatch(setUserProfile(response.data))
+            }
+        );
+    }
+}
+export const getStatus = (id) => {
+    return (dispatch) => {
+        profileAPI.getStatus(id).then(
+            response => {
+                dispatch(setUserStatus(response.data))
+            }
+        );
+    }
+}
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status).then(
+            response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setUserStatus(status))
+                }
             }
         );
     }
