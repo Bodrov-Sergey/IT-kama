@@ -1,48 +1,20 @@
 import React from "react";
-import {ADD_NEW_POST_ActionCreator, CHANGE_NEW_POST_TEXTAREA_ActionCreator} from "../../../redux/profile-reducer";
-import NewPost from "./NewPost";
+import {addPost} from "../../../redux/profile-reducer";
+import {NewPostReduxForm} from "./NewPost";
 import {connect} from "react-redux";
 
 
+const mapStateToProps = (state) => ({
+    postData: state.profilePage.postData
+})
 
-const superNewPostContainer = (props) => {
-    let state = props.store.getState();
-
-    let newPostText = (body) => {
-        props.store.dispatch(CHANGE_NEW_POST_TEXTAREA_ActionCreator(body));
-
+const NewPostContainer = (props)=>{
+    let addNewMessage = (text) => {
+        props.addPost(text.newPostText);
     };
-    let newPostPublish = () => {
-        props.store.dispatch(ADD_NEW_POST_ActionCreator());
-        props.store.dispatch(CHANGE_NEW_POST_TEXTAREA_ActionCreator(''));
-    };
-
-    return (
-        <NewPost newPostText={newPostText} newPostPublish={newPostPublish} newPostTextValue={state.profilePage.newPostText}/>
-        )
-
-
+    return <NewPostReduxForm onSubmit={addNewMessage} />
 }
 
-let mapStateToProps = (state) => {
-    return {
-        newPostTextValue: state.profilePage.newPostText
-    }
-}
-let mapDispatchToProps = (dispatch) => {
-    return {
-        newPostText: (body) => {
-            dispatch(CHANGE_NEW_POST_TEXTAREA_ActionCreator(body));
-        },
-        newPostPublish: () => {
-            dispatch(ADD_NEW_POST_ActionCreator());
-            dispatch(CHANGE_NEW_POST_TEXTAREA_ActionCreator(''));
-        }
-    }
-}
-
-const NewPostContainer = connect(mapStateToProps, mapDispatchToProps)(NewPost);
+export default connect(mapStateToProps, {addPost})(NewPostContainer);
 
 
-
-export default NewPostContainer;

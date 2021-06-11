@@ -55,42 +55,29 @@ let initialState = {
             sender: '1',
         },
 
-    ],
-    newMessageText: ''
+    ]
 };
 
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CHANGE_MESSAGE_TEXTAREA:
-            return  {
-                ...state,
-                newMessageText: action.content
-            };
         case SEND_MESSAGE:
             let message = {
                 date: '',
-                text: state.newMessageText,
+                text: action.message,
                 sender: '1',
             }
             return  {
                 ...state,
-                chatData: [...state.chatData, message],
-                newMessageText: ''
+                chatData: [...state.chatData, message]
             };
         default:
             return state;
     }
 }
-
-export const changeMessageTextarea = (text) => {
+export const sendMessage = (message) => {
     return {
-        type: CHANGE_MESSAGE_TEXTAREA,
-        content: text
-    }
-}
-export const sendMessage = () => {
-    return {
-        type: SEND_MESSAGE
+        type: SEND_MESSAGE,
+        message
     }
 }
 

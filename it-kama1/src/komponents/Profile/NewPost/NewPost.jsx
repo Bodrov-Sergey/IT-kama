@@ -1,22 +1,12 @@
 import React from "react";
 import s from "./NewPost.module.css"
-
-
+import {Field, reduxForm} from "redux-form";
 
 const NewPost = (props) => {
 
-    let newPostText = (e) => {
-        props.newPostText(e.target.value);
-    };
-    let newPostPublish = () => {
-        props.newPostPublish();
-    };
-
-    return <div className={s.container}>
-        <textarea className={s.input} onChange={newPostText} placeholder={"What`s new for today?"} value={props.newPostTextValue}/>
-        <button onClick={newPostPublish} className={s.button}>Send</button>
-
-    </div>
+    return <form onSubmit={props.handleSubmit} className={s.container}>
+            <Field component={"textarea"} className={s.input} placeholder={"What`s new for today?"} name={"newPostText"}/>
+            <button className={s.button}>Send</button>
+    </form>
 }
-
-export default NewPost;
+export const NewPostReduxForm = reduxForm({form: "newPost"})(NewPost);

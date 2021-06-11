@@ -13,7 +13,7 @@ const Header = (props) => {
                 <UserAuthInfo card={props.card} />
                 :
                 <>{props.isFetching ? <Preloader height={30} />: <NavLink to={"/login"}>
-                        <button className={s.button}>login</button>
+                        <button className={s.button}>Login</button>
                     </NavLink>}</>}
 
 

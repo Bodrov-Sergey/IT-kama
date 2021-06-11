@@ -3,16 +3,12 @@ import s from './Chat.module.css';
 import {NavLink} from "react-router-dom";
 import baseAva from '../../../Icons/Profile.svg';
 import Message from "./Message/Message";
+import {AddMessageFormRedux} from "./AddMessageForm";
 
-
-let Chat = (props) => {
-    let messages = props.chatData.map(p => <Message text={p.text} dete={p.date} sender={p.sender} />);
-
-    let changeMessageTextarea = (e) => {
-        props.changeMessageTextarea(e.target.value);
-    };
-    let sendMessage = () => {
-        props.sendMessage();
+const Chat = (props) => {
+    let messages = props.chatData.map(p => <Message text={p.text} dete={p.date} sender={p.sender}/>);
+    let addNewMessage = (text) => {
+        props.sendMessage(text.message);
     };
 
     return (
@@ -34,12 +30,11 @@ let Chat = (props) => {
                 </div>
 
             </div>
-            <div className={s.newMessageContainer}>
-                <textarea className={s.messageInput} placeholder={"Message..."} onChange={changeMessageTextarea}
-                          value={props.newMessageText}/>
-                <button className={s.sendButton} onClick={sendMessage}>Send</button>
-            </div>
+            <AddMessageFormRedux onSubmit={addNewMessage}/>
+
         </section>
     );
 };
+
+
 export default Chat;
