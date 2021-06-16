@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import Login from "./Login";
-import {reduxForm} from "redux-form";
+import {LoginReduxForm} from "./Login";
 import s from "./Login.module.css"
 
 const mapStateToProps = (state) => ({})
@@ -10,7 +9,7 @@ const mapStateToProps = (state) => ({})
 
 const LoginContainer = (props) => {
     const onSubmit = (formData) => {
-        console.log(formData)
+        alert(formData.login +` `+ formData.password)
     }
     return (
         <section className={s.loginWrapper}>
@@ -19,10 +18,6 @@ const LoginContainer = (props) => {
         </section>
     )
 };
-
-const LoginReduxForm = reduxForm({
-    form: "login"
-})(Login)
 
 
 export default connect(mapStateToProps)(LoginContainer);

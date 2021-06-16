@@ -11,17 +11,7 @@
 
 }
 
-.input{
-    width: 100%;
-    margin-bottom: 16px;
-    padding-bottom: 5px;
-    height: 60px;
-    border-bottom: 1px solid #DCE1E6;
-    font-size: 13px;
-    outline: none;
-    -moz-appearance: none;
-    resize: none;
-}
+
 .button{
     font-size: 13px;
     background-color: #5181B8;

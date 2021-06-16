@@ -1,13 +1,18 @@
 import React from "react";
 import s from "./Login.module.css"
-import {Field} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 import {NavLink} from "react-router-dom";
+import {maxLength, required} from "../../utilits/validators/validators.js";
+import {Input} from "../common/FormsControls/FormsControls";
+
+const maxLength10 = maxLength(10);
+
 
 const Login = (props) => {
     return (
         <form className={s.loginForm} onSubmit={props.handleSubmit}>
-            <Field className={s.input} placeholder={"Login"} component={"input"} name={"login"}/>
-            <Field className={s.input} placeholder={"Password"} component={"input"} name={"password"}/>
+            <Field validate={[required]} placeholder={"Login"} component={Input} name={"login"}/>
+            <Field validate={[required]} className={s.input} placeholder={"Password"}component={Input} name={"password"}/>
             <div className={s.rememberMeInputContainer}>
                 <Field className={s.rememberMeCheckbox} component={"input"} name={"rememberMe"}
                        type={"checkbox"}/>
@@ -20,5 +25,6 @@ const Login = (props) => {
         </form>
     )
 }
-
-export default Login;
+export const LoginReduxForm = reduxForm({
+    form: "login"
+})(Login)
