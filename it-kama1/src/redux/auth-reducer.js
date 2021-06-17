@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import {authAPI} from "../api/api";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
@@ -72,12 +72,35 @@ export const setCard = (card) => {
 export const authMe = () => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        usersAPI.authMe().then(
+        authAPI.authMe().then(
             response => {
                 dispatch(setAuthUserData(response.data.data.id, response.data.data.email, response.data.data.login));
                 localStorage.setItem("id", response.data.data.id)
-                response.data.messages[0] === "You are not authorized" ? dispatch(toggleIsFetching(false)) :  usersAPI.getMe(response.data.data.id).then(response=>{dispatch(setCard(response.data)); dispatch(toggleIsFetching(false)); dispatch(toggleIsAuth(true));});
+                response.data.messages[0] === "You are not authorized" ? dispatch(toggleIsFetching(false)) :  authAPI.getMe(response.data.data.id).then(response=>{dispatch(setCard(response.data)); dispatch(toggleIsFetching(false)); dispatch(toggleIsAuth(true));});
 
+            })
+    }
+}
+export const login = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email, password, rememberMe).then(
+            response => {
+                if (response.data.resultCode == 0){
+                    dispatch(authMe())
+                }
+            })
+    }
+}
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout().then(
+            response => {
+                if (response.data.resultCode == 0){
+                    dispatch(setAuthUserData(null, null, null));
+                    dispatch(toggleIsAuth(false));
+                    dispatch(setCard(null));
+                    dispatch(toggleIsFetching(false));
+                }
             })
     }
 }

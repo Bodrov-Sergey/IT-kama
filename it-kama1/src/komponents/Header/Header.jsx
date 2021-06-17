@@ -10,7 +10,7 @@ const Header = (props) => {
         <img src={mainLogo} alt={"logo"} className={s.img}/>
         <div className={s.loginBlock}>
             { (props.isAuth) ?
-                <UserAuthInfo card={props.card} />
+                <UserAuthInfo logout={props.logout} card={props.card} />
                 :
                 <>{props.isFetching ? <Preloader height={30} />: <NavLink to={"/login"}>
                         <button className={s.button}>Login</button>

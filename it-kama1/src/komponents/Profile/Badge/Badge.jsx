@@ -13,7 +13,7 @@ const Badge = (props) => {
             <div className={s.personal}>
                 <h1 className={s.name}>{props.profile.fullName}</h1>
                 {/*<ProfileStatus content={props.profile.aboutMe} />*/}
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
                 <div className={s.infoContainer}>
                     <ul className={s.list}>
                         {props.profile.contacts.facebook?  <li className={s.itemPoint}>facebook:</li>: null}
