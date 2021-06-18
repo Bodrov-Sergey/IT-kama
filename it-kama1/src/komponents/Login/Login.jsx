@@ -10,6 +10,7 @@ const maxLength10 = maxLength(10);
 
 const Login = (props) => {
     return (
+
         <form className={s.loginForm} onSubmit={props.handleSubmit}>
             <Field validate={[required]} placeholder={"Login"} component={Input} name={"login"}/>
             <Field validate={[required]} className={s.input} placeholder={"Password"} type={"password"} component={Input} name={"password"}/>
@@ -17,6 +18,9 @@ const Login = (props) => {
                 <Field className={s.rememberMeCheckbox} component={"input"} name={"rememberMe"}
                        type={"checkbox"}/>
                 <p className={s.rememberMeText}>Remember me</p>
+            </div>
+            <div className={s.errorMessage}>
+            {props.error? props.error: ""}
             </div>
             <div className={s.buttonContainer}>
                 <button className={s.button}>Sign in</button>

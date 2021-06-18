@@ -1,4 +1,5 @@
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
@@ -87,6 +88,10 @@ export const login = (email, password, rememberMe) => {
             response => {
                 if (response.data.resultCode == 0){
                     dispatch(authMe())
+                } else {
+                    debugger;
+                    let message = response.data.messages.length>0 ? response.data.messages[0]:"Not reserved error"
+                    dispatch(stopSubmit("login", {_error: message}))
                 }
             })
     }
