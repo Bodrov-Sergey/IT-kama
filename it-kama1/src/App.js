@@ -1,10 +1,8 @@
 import React from "react";
 import './App.css';
 import './zeroing.css'
-import Header from "./komponents/Header/Header";
 import Aside from "./komponents/Aside/Aside";
-import Profile from "./komponents/Profile/Profile";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import News from "./komponents/News/News";
 import Settings from "./komponents/Settings/Settings";
 import ChatContainer from "./komponents/Messages/Chat/ChatContainer";
@@ -13,29 +11,48 @@ import PeopleContainer from "./komponents/People/PeopleContainer";
 import ProfileContainer from "./komponents/Profile/ProfileContainer";
 import HeaderContainer from "./komponents/Header/HeaderContainer";
 import LoginContainer from "./komponents/Login/LoginContainer";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import {initialize} from "./redux/app-reducer";
+import Preloader from "./komponents/common/Preloader/Preloader";
 
 
-function App (props) {
-    return (
-        <div className={"wrapper"}>
-            <HeaderContainer />
-            <Aside/>
-            <main className={"main"}>
-                <Route path='/profile/:userId?'
-                       render={() => <ProfileContainer />} />
-                <Route exact path='/messages' render={() => <MessagesContainer />}/>
-                <Route exact path='/login' render={() => <LoginContainer />}/>
-                <Route path='/messages/chat' render={() => <ChatContainer />}/>
-                <Route path='/people' render={() => <PeopleContainer />}/>
-                <Route path='/news' render={() => <News/>}/>
-                <Route path='/settings' render={() => <Settings/>}/>
+class App extends React.Component {
+    componentDidMount() {
+        this.props.initialize()
+    }
 
-            </main>
+    render() {
+        if (!this.props.initialized) {
+            return <div className={"backWrapper"}>
+                <Preloader/>
+            </div>
+        }
+        return (
+            <div className={"wrapper"}>
+                <HeaderContainer/>
+                <Aside/>
+                <main className={"main"}>
+                    <Route path='/profile/:userId?'
+                           render={() => <ProfileContainer/>}/>
+                    <Route exact path='/messages' render={() => <MessagesContainer/>}/>
+                    <Route exact path='/login' render={() => <LoginContainer/>}/>
+                    <Route path='/messages/chat' render={() => <ChatContainer/>}/>
+                    <Route path='/people' render={() => <PeopleContainer/>}/>
+                    <Route path='/news' render={() => <News/>}/>
+                    <Route path='/settings' render={() => <Settings/>}/>
+
+                </main>
 
 
-        </div>
+            </div>
 
-    );
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    initialized: state.app.initialized,
+})
+
+export default compose(withRouter, connect(mapStateToProps, {initialize}))(App);

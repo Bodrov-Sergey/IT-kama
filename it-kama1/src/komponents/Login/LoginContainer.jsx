@@ -2,8 +2,9 @@ import React from "react";
 import {connect} from "react-redux";
 import {LoginReduxForm} from "./Login";
 import s from "./Login.module.css"
-import {Redirect} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import {login, logout} from "../../redux/auth-reducer";
+import {compose} from "redux";
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
@@ -12,6 +13,7 @@ const mapStateToProps = (state) => ({
 
 
 const LoginContainer = (props) => {
+    debugger
     const onSubmit = (formData) => {
         props.login(formData.login, formData.password, formData.rememberMe )
     }
@@ -28,4 +30,4 @@ const LoginContainer = (props) => {
 };
 
 
-export default connect(mapStateToProps, {login, logout})(LoginContainer);
+export default compose(connect(mapStateToProps, {login, logout}), withRouter)(LoginContainer)

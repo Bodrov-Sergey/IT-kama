@@ -59,7 +59,7 @@ export const toggleIsAuth = (bool) => {
 }
 
 export const setAuthUserData = (userId, email, login) => {
-    return{
+    return {
         type: SET_AUTH_USER_DATA,
         data: {userId, email, login}
     }
@@ -70,27 +70,29 @@ export const setCard = (card) => {
         card
     }
 }
-export const authMe = () => {
-    return (dispatch) => {
-        dispatch(toggleIsFetching(true));
-        authAPI.authMe().then(
-            response => {
-                dispatch(setAuthUserData(response.data.data.id, response.data.data.email, response.data.data.login));
-                localStorage.setItem("id", response.data.data.id)
-                response.data.messages[0] === "You are not authorized" ? dispatch(toggleIsFetching(false)) :  authAPI.getMe(response.data.data.id).then(response=>{dispatch(setCard(response.data)); dispatch(toggleIsFetching(false)); dispatch(toggleIsAuth(true));});
+export const authMe = () => (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    return authAPI.authMe()
+        .then(response => {
+            dispatch(setAuthUserData(response.data.data.id, response.data.data.email, response.data.data.login));
+            response.data.messages[0] === "You are not authorized" ? dispatch(toggleIsFetching(false)) : authAPI.getMe(response.data.data.id).then(response => {
+                dispatch(setCard(response.data));
+                dispatch(toggleIsFetching(false));
+                dispatch(toggleIsAuth(true));
+            });
 
-            })
-    }
+        })
 }
+
 export const login = (email, password, rememberMe) => {
     return (dispatch) => {
         authAPI.login(email, password, rememberMe).then(
             response => {
-                if (response.data.resultCode == 0){
+                if (response.data.resultCode == 0) {
                     dispatch(authMe())
                 } else {
                     debugger;
-                    let message = response.data.messages.length>0 ? response.data.messages[0]:"Not reserved error"
+                    let message = response.data.messages.length > 0 ? response.data.messages[0] : "Not reserved error"
                     dispatch(stopSubmit("login", {_error: message}))
                 }
             })
@@ -100,7 +102,7 @@ export const logout = () => {
     return (dispatch) => {
         authAPI.logout().then(
             response => {
-                if (response.data.resultCode == 0){
+                if (response.data.resultCode == 0) {
                     dispatch(setAuthUserData(null, null, null));
                     dispatch(toggleIsAuth(false));
                     dispatch(setCard(null));
