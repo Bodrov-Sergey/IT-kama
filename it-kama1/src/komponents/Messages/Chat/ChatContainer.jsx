@@ -1,5 +1,5 @@
 import React from "react";
-import {sendMessage} from "../../../redux/messages-reducer";
+import {updateWithNewMessage} from "../../../redux/messages-reducer";
 import Chat from "./Chat";
 import {connect} from "react-redux";
 
@@ -9,4 +9,4 @@ let mapStateToProps = (state) => {
         chatData: state.messagesPage.chatData,
     }
 }
-export default connect(mapStateToProps, {sendMessage})(Chat);
+export default connect(mapStateToProps, {updateWithNewMessage})(Chat);

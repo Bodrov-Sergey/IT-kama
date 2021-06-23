@@ -1,51 +1,37 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import s from '../Badge.module.css';
 
-class ProfileStatus extends React.Component {
-    state = {
-        editMode: false,
-        status: this.props.status
-    }
-    activateEditMode = () => {
-        this.setState({
-            editMode: true
-        })
-    }
-    deactivateEditMode = () => {
-        this.setState({
-            editMode: false
-        });
-        this.props.updateStatus(this.state.status)
-    }
-    onStatusChange = (e) =>{
-        this.setState({
-            status: e.currentTarget.value
-        })
-    }
-    componentDidUpdate(prevProps, prevState) {
-        if(prevProps.status != this.props.status){
-            this.setState({
-                state: this.props.status
-            });
-        }
-    }
+const ProfileStatus = (props) => {
+    let [editMode, setEditMode] = useState(false);
+    let [status, setStatus] = useState(props.status);
 
-    render() {
-        return (
-            <section>
-                {this.state.editMode ?
-                    <div>
-                        <input autoFocus={true} onBlur={this.deactivateEditMode} className={s.inputStatus}
-                               value={this.state.status} onChange={this.onStatusChange}/>
-                    </div>
-                    :
-                    <div>
-                        <p onClick={this.activateEditMode} className={s.status}>{this.props.status}</p>
-                    </div>
-                }
-            </section>
-        )
+    const activateEditMode = ()=>{
+        setEditMode(true)
     }
+    const deactivateEditMode=()=>{
+        setEditMode(false);
+        props.updateStatus(status)
+    }
+    const onStatusChange = (e) =>{
+        setStatus(e.currentTarget.value);
+    }
+    useEffect(()=>{setStatus(props.status)},[props.status])
+
+    return (
+        <section>
+            {editMode ?
+                <div>
+                    <input autoFocus={true} onBlur={deactivateEditMode} className={s.inputStatus}
+                           value={status} onChange={onStatusChange}/>
+                </div>
+                :
+                <div>
+                    <p onClick={activateEditMode} className={s.status}>{props.status}</p>
+                </div>
+            }
+        </section>
+    )
+
 
 }
 

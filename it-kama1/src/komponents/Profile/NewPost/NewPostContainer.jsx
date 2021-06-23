@@ -1,5 +1,5 @@
 import React from "react";
-import {addPost} from "../../../redux/profile-reducer";
+import {updateWithNewPost} from "../../../redux/profile-reducer";
 import {NewPostReduxForm} from "./NewPost";
 import {connect} from "react-redux";
 
@@ -10,11 +10,11 @@ const mapStateToProps = (state) => ({
 
 const NewPostContainer = (props)=>{
     let addNewMessage = (text) => {
-        props.addPost(text.newPostText);
+        props.updateWithNewPost(text.newPostText);
     };
     return <NewPostReduxForm onSubmit={addNewMessage} />
 }
 
-export default connect(mapStateToProps, {addPost})(NewPostContainer);
+export default connect(mapStateToProps, {updateWithNewPost})(NewPostContainer);
 
 

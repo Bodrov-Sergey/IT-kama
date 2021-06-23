@@ -1,4 +1,5 @@
 import {profileAPI} from "../api/api";
+import {reset} from "redux-form";
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
@@ -122,6 +123,12 @@ export const updateStatus = (status) => {
                 }
             }
         );
+    }
+}
+export const updateWithNewPost = (post) => {
+    return (dispatch) => {
+        dispatch(addPost(post));
+        dispatch(reset('newPost'));
     }
 }
 

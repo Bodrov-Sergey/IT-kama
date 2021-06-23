@@ -1,4 +1,5 @@
-const CHANGE_MESSAGE_TEXTAREA = 'CHANGE-MESSAGE-TEXTAREA';
+import {reset} from "redux-form";
+
 const SEND_MESSAGE = "SEND_MESSAGE";
 
 let initialState = {
@@ -80,5 +81,12 @@ export const sendMessage = (message) => {
         message
     }
 }
+export const updateWithNewMessage = (message) => {
+    return (dispatch) => {
+        dispatch(sendMessage(message));
+        dispatch(reset('newMessage'));
+    }
+}
+
 
 export default messagesReducer;

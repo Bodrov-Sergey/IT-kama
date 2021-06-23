@@ -8,7 +8,7 @@ import {AddMessageFormRedux} from "./AddMessageForm";
 const Chat = (props) => {
     let messages = props.chatData.map(p => <Message text={p.text} dete={p.date} sender={p.sender}/>);
     let addNewMessage = (text) => {
-        props.sendMessage(text.message);
+        props.updateWithNewMessage(text.message);
     };
 
     return (
