@@ -1,4 +1,5 @@
 import {usersAPI} from "../api/api";
+import {updateObject} from "../utilits/help-functions/reducersHelpFunctions";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -7,7 +8,6 @@ const SET_PAGES_COUNT = "SET_PAGES_COUNT";
 const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_DISABLED = "TOGGLE_DISABLED";
-
 
 
 let initialState = {
@@ -25,22 +25,12 @@ const peopleReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                peopleData: state.peopleData.map(u => {
-                    if (u.id === action.id) {
-                        return {...u, followed: true};
-                    }
-                    return u;
-                })
+                peopleData: updateObject(state.peopleData, action.id , "id", {followed: true})
             }
         case UNFOLLOW:
             return {
                 ...state,
-                peopleData: state.peopleData.map(u => {
-                    if (u.id === action.id) {
-                        return {...u, followed: false};
-                    }
-                    return u;
-                })
+                peopleData: updateObject(state.peopleData, action.id , "id", {followed: false})
             }
         case SET_PEOPLE:
             return {
@@ -76,13 +66,13 @@ const peopleReducer = (state = initialState, action) => {
             return state;
     }
 }
-export const follow = (id) => {
+export const accessFollow = (id) => {
     return {
         type: FOLLOW,
         id
     }
 }
-export const unfollow = (id) => {
+export const accessUnfollow = (id) => {
     return {
         type: UNFOLLOW,
         id
@@ -120,37 +110,30 @@ export const toggleDisabled = (bool, id) => {
     }
 }
 export const getUsers = (activePage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true));
-        usersAPI.getUsers(activePage, pageSize).then(
-            response => {
-                dispatch(toggleIsFetching(false))
-                dispatch(setPeople(response.items))
-                dispatch(setPagesCount(response.totalCount))
-            }
-        );
+        const response = await usersAPI.getUsers(activePage, pageSize);
+        dispatch(toggleIsFetching(false))
+        dispatch(setPeople(response.items))
+        dispatch(setPagesCount(response.totalCount))
     }
 }
-export const accessFollow = (id) => {
-    return (dispatch) => {
-        dispatch(toggleDisabled(true, id))
-        usersAPI.followUser(id).then(
-            response => {
-                dispatch(toggleDisabled(false, id))
-                dispatch(follow(id))
-            }
-        );
+const accessFollowUnfollow = async (dispatch, id, apiMethod, actionCreator) => {
+    dispatch(toggleDisabled(true, id))
+    const response = await apiMethod;
+    if (response.data.resultCode === 0) {
+        dispatch(actionCreator(id))
+    }
+    dispatch(toggleDisabled(false, id))
+}
+export const follow = (id) => {
+    return async (dispatch) => {
+        accessFollowUnfollow(dispatch, id, usersAPI.followUser(id), accessFollow)
     }
 }
-export const accessUnfollow = (id) => {
-    return (dispatch) => {
-        dispatch(toggleDisabled(true, id))
-        usersAPI.unfollowUser(id).then(
-            response => {
-                dispatch(toggleDisabled(false, id))
-                dispatch(unfollow(id))
-            }
-        );
+export const unfollow = (id) => {
+    return async (dispatch) => {
+        accessFollowUnfollow(dispatch, id, usersAPI.unfollowUser(id), accessUnfollow)
     }
 }
 export default peopleReducer;

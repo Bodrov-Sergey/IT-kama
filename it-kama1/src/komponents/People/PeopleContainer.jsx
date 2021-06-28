@@ -1,7 +1,7 @@
 import React from "react";
 import PeopleAPIContainer from './PeopleAPIContainer'
 import {connect} from "react-redux";
-import {setActivePage, getUsers, accessFollow, accessUnfollow} from "../../redux/people-reducer";
+import {setActivePage, getUsers, follow, unfollow} from "../../redux/people-reducer";
 import {
     getActivePage, getDisabled,
     getIsFetching,
@@ -23,4 +23,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setActivePage, getUsers, accessFollow, accessUnfollow} )(PeopleAPIContainer);
+export default connect(mapStateToProps, {setActivePage, getUsers, follow, unfollow} )(PeopleAPIContainer);

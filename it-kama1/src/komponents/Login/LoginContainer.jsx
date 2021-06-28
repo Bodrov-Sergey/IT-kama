@@ -13,7 +13,6 @@ const mapStateToProps = (state) => ({
 
 
 const LoginContainer = (props) => {
-    debugger
     const onSubmit = (formData) => {
         props.login(formData.login, formData.password, formData.rememberMe )
     }

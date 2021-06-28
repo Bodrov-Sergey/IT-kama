@@ -4,7 +4,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import baseAva from '../../../Icons/Profile.svg'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
-const Badge = (props) => {
+const Badge =React.memo((props) => {
     window.scrollTo(0, 0)
     if (!props.isFetching && props.profile) {
 
@@ -46,6 +46,6 @@ const Badge = (props) => {
         return <div className={s.preloaderContainer}><Preloader height={90}/></div>
     }
 
-}
+})
 
 export default Badge;

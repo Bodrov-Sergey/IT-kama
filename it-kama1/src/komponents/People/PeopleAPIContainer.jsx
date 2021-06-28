@@ -57,8 +57,8 @@ class PeopleAPIContainer extends React.Component {
                         setActivePage={this.setActivePage}
                         setPreviousPage={this.setPreviousPage}
                         setNextPage={this.setNextPage}
-                        accessFollow={this.props.accessFollow}
-                        accessUnfollow={this.props.accessUnfollow}
+                        follow={this.props.follow}
+                        unfollow={this.props.unfollow}
 
                 />
             </section>

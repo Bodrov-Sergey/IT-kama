@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 import leftArrow from "../../Icons/left-arrow.svg";
 import rightArrow from "../../Icons/right-arrow.svg";
 
-const People = (props) => {
+const People = React.memo((props) => {
 
     return (
         <>
@@ -22,40 +22,42 @@ const People = (props) => {
                         </div>
                         <div className={s.buttonCont}>
                             {u.followed
-                                ? <button className={s.actionButtonUnfollow} disabled={props.disabled.some(id => id === u.id)} onClick={() => {
-                                    props.accessUnfollow(u.id)
+                                ? <button className={s.actionButtonUnfollow}
+                                          disabled={props.disabled.some(id => id === u.id)} onClick={() => {
+                                    props.unfollow(u.id)
                                 }}>Unfollow</button>
-                                : <button className={s.actionButtonFollow} disabled={props.disabled.some(id => id === u.id)} onClick={() => {
-                                    props.accessFollow(u.id);
-                                }} >Follow</button>}
-                                    </div>
-                                    </div>)
-                                }
-                                    </div>
-                                    <div className={s.pagesControl}>
-                                    <button className={s.pageButton} onClick={() => {
-                                    props.setActivePage(1);
-                                    window.scrollTo(0, 0)
-                                }}>1
-                                    </button>
-                                    <div className={s.activePageCont}>
-                                    <img src={leftArrow} className={s.arrow} onClick={() => {
-                                    props.setPreviousPage();
-                                    window.scrollTo(0, 0)
-                                }}/>
-                                    <button className={s.pageButton}>{props.activePage}</button>
-                                    <img src={rightArrow} className={s.arrow} onClick={() => {
-                                    props.setNextPage();
-                                    window.scrollTo(0, 0)
-                                }}/>
-                                    </div>
-                                    <button className={s.pageButton} onClick={() => {
-                                    props.setActivePage(props.pages.length);
-                                    window.scrollTo(0, 0)
-                                }}>{props.pages.length}</button>
-                                    </div>
-                                    </>
+                                : <button className={s.actionButtonFollow}
+                                          disabled={props.disabled.some(id => id === u.id)} onClick={() => {
+                                    props.follow(u.id);
+                                }}>Follow</button>}
+                        </div>
+                    </div>)
+                }
+            </div>
+            <div className={s.pagesControl}>
+                <button className={s.pageButton} onClick={() => {
+                    props.setActivePage(1);
+                    window.scrollTo(0, 0)
+                }}>1
+                </button>
+                <div className={s.activePageCont}>
+                    <img src={leftArrow} className={s.arrow} onClick={() => {
+                        props.setPreviousPage();
+                        window.scrollTo(0, 0)
+                    }}/>
+                    <button className={s.pageButton}>{props.activePage}</button>
+                    <img src={rightArrow} className={s.arrow} onClick={() => {
+                        props.setNextPage();
+                        window.scrollTo(0, 0)
+                    }}/>
+                </div>
+                <button className={s.pageButton} onClick={() => {
+                    props.setActivePage(props.pages.length);
+                    window.scrollTo(0, 0)
+                }}>{props.pages.length}</button>
+            </div>
+        </>
 
-                                    )
-                                }
-                                    export default People;
+    )
+})
+export default People;

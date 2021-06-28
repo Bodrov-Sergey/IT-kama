@@ -1,5 +1,6 @@
 import {profileAPI} from "../api/api";
 import {reset} from "redux-form";
+
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
@@ -95,34 +96,27 @@ export const toggleIsFetching = (bool) => {
     }
 }
 export const getUser = (id) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true))
-        profileAPI.getUser(id).then(
-            response => {
-                dispatch(toggleIsFetching(false))
-                dispatch(setUserProfile(response.data))
-            }
-        );
+        const response = await profileAPI.getUser(id);
+        dispatch(toggleIsFetching(false))
+        dispatch(setUserProfile(response.data))
     }
+
 }
 export const getStatus = (id) => {
-    return (dispatch) => {
-        profileAPI.getStatus(id).then(
-            response => {
-                dispatch(setUserStatus(response.data))
-            }
-        );
+    return async (dispatch) => {
+        const response = await profileAPI.getStatus(id)
+        dispatch(setUserStatus(response.data))
     }
 }
 export const updateStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status).then(
-            response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setUserStatus(status))
-                }
-            }
-        );
+    return async (dispatch) => {
+        const response = await profileAPI.updateStatus(status)
+        if (response.data.resultCode === 0) {
+            dispatch(setUserStatus(status))
+        }
+
     }
 }
 export const updateWithNewPost = (post) => {

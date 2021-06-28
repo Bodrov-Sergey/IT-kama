@@ -70,45 +70,42 @@ export const setCard = (card) => {
         card
     }
 }
-export const authMe = () => (dispatch) => {
+export const authMe = () => async (dispatch) => {
     dispatch(toggleIsFetching(true));
-    return authAPI.authMe()
-        .then(response => {
-            dispatch(setAuthUserData(response.data.data.id, response.data.data.email, response.data.data.login));
-            response.data.messages[0] === "You are not authorized" ? dispatch(toggleIsFetching(false)) : authAPI.getMe(response.data.data.id).then(response => {
-                dispatch(setCard(response.data));
-                dispatch(toggleIsFetching(false));
-                dispatch(toggleIsAuth(true));
-            });
+    const response = await authAPI.authMe();
+    dispatch(setAuthUserData(response.data.data.id, response.data.data.email, response.data.data.login));
+    if (response.data.resultCode === 1) {
+        dispatch(toggleIsFetching(false))
+    } else {
+        const responseGetMe = await authAPI.getMe(response.data.data.id);
+        dispatch(setCard(responseGetMe.data));
+        dispatch(toggleIsFetching(false));
+        dispatch(toggleIsAuth(true));
+    }
 
-        })
 }
 
 export const login = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.login(email, password, rememberMe).then(
-            response => {
-                if (response.data.resultCode == 0) {
-                    dispatch(authMe())
-                } else {
-                    debugger;
-                    let message = response.data.messages.length > 0 ? response.data.messages[0] : "Not reserved error"
-                    dispatch(stopSubmit("login", {_error: message}))
-                }
-            })
+    return async (dispatch) => {
+        const response = await authAPI.login(email, password, rememberMe);
+        if (response.data.resultCode == 0) {
+            dispatch(authMe())
+        } else {
+            let message = response.data.messages.length > 0 ? response.data.messages[0] : "Not reserved error"
+            dispatch(stopSubmit("login", {_error: message}))
+        }
     }
 }
 export const logout = () => {
-    return (dispatch) => {
-        authAPI.logout().then(
-            response => {
-                if (response.data.resultCode == 0) {
-                    dispatch(setAuthUserData(null, null, null));
-                    dispatch(toggleIsAuth(false));
-                    dispatch(setCard(null));
-                    dispatch(toggleIsFetching(false));
-                }
-            })
+    return async (dispatch) => {
+        const response = await authAPI.logout();
+        if (response.data.resultCode == 0) {
+            dispatch(setAuthUserData(null, null, null));
+            dispatch(toggleIsAuth(false));
+            dispatch(setCard(null));
+            dispatch(toggleIsFetching(false));
+        }
+
     }
 }
 
