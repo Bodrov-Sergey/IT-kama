@@ -2,11 +2,9 @@ import React from "react";
 import s from "./Login.module.css"
 import {Field, reduxForm} from "redux-form";
 import {NavLink} from "react-router-dom";
-import {maxLength, required} from "../../utilits/validators/validators.js";
+import {required} from "../../utilits/validators/validators.js";
 import {Input} from "../common/FormsControls/FormsControls";
-
-const maxLength10 = maxLength(10);
-
+import Button from "../common/Button/Button";
 
 const Login = (props) => {
     return (
@@ -23,7 +21,7 @@ const Login = (props) => {
             {props.error? props.error: ""}
             </div>
             <div className={s.buttonContainer}>
-                <button className={s.button}>Sign in</button>
+                <Button value={"Sign in"} />
                 <NavLink to={"/signUp"} className={s.link}>No account? Sign up</NavLink>
             </div>
         </form>

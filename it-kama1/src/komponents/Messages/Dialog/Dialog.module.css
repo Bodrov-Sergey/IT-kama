@@ -43,10 +43,9 @@
     font-size: 12px;
     height: 25px;
     width: 25px;
-    background-color: #2A5885;
+    background-color: #5181B8;
     border-radius: 50%;
     color: white;
-
 }
 .counterUnread {
     opacity: 0;

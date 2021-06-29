@@ -10,10 +10,7 @@ let mapStateToProps = (state) => {
         postData: state.profilePage.postData
     }
 }
-let mapDispatchToProps = (dispatch) => {
-    return {}
-}
 
-let PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
+let PostsContainer = connect(mapStateToProps, {})(Posts)
 
 export default PostsContainer;

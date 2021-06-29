@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import s from './Profile.module.css'
 import Profile from "./Profile";
 import {connect} from "react-redux";
@@ -7,40 +7,25 @@ import {withRouter} from 'react-router-dom';
 import {Redirect} from "react-router-dom";
 import {compose} from "redux";
 
-class ProfileContainer extends React.Component {
-    componentDidMount() {
-        let userId = this.props.match.params.userId;
+const ProfileContainer = (props) => {
+    useEffect(() => {updateComponent()},[props.match.params.userId, props.myProfileId]);
+
+    const updateComponent = () => {
+        let userId = props.match.params.userId;
         if (!userId) {
-            userId = this.props.myProfileId;
+            userId = props.myProfileId;
         }
-        if(userId) {
-            this.props.getUser(userId);
-            this.props.getStatus(userId);
-        }
-    }
-
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.profile) {
-            if (this.props.match.params.userId != prevProps.match.params.userId) {
-                let userId = this.props.match.params.userId;
-                if (!userId) {
-                    userId = this.props.myProfileId;
-                }
-                if(userId) {
-                    this.props.getUser(userId);
-                    this.props.getStatus(userId);
-                }
-            }
+        if (userId) {
+            props.getUser(userId);
+            props.getStatus(userId);
         }
     }
-
-    render() {
-        if(!this.props.match.params.userId && !this.props.isAuth) {
-            return <Redirect to={"/login"} />
-        }
-        return <Profile {...this.props} profile={this.props.profile} isFetching={this.props.isFetching} status={this.props.status} updateStatus={this.props.updateStatus}/>
+    if (!props.match.params.userId && !props.isAuth) {
+        return <Redirect to={"/login"}/>
     }
+    return <Profile {...props} profile={props.profile} isFetching={props.isFetching}
+                    status={props.status} updateStatus={props.updateStatus}/>
+
 }
 
 let mapStateToProps = (state) => ({
@@ -52,9 +37,10 @@ let mapStateToProps = (state) => ({
 })
 
 
-
 export default compose(
-    connect(mapStateToProps, {getUser, getStatus,
-        updateStatus}),withRouter)(ProfileContainer)
+    connect(mapStateToProps, {
+        getUser, getStatus,
+        updateStatus
+    }), withRouter)(ProfileContainer)
 
 

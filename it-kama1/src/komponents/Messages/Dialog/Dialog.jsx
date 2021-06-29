@@ -1,7 +1,5 @@
 import React from "react";
 import s from './Dialog.module.css';
-
-//УБРАТЬ ИМПОРТ ПОТОМ ПЕРЕДЕЛАТЬ ЧЕРЕЗ ПРОПСУ
 import baseAva from '../../../Icons/Profile.svg';
 import {NavLink} from "react-router-dom";
 

@@ -30,13 +30,6 @@
 .rememberMeText{
     font-size: 13px;
 }
-.button{
-    font-size: 13px;
-    background-color: #5181B8;
-    padding: 7px 16px 8px;
-    color: #FFFFFF;
-    border-radius: 4px;
-}
 .input{
     border: 1px  solid #DCE1E6;
     border-radius: 5px;

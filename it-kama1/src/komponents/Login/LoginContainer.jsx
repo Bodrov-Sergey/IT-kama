@@ -6,12 +6,6 @@ import {Redirect, withRouter} from "react-router-dom";
 import {login, logout} from "../../redux/auth-reducer";
 import {compose} from "redux";
 
-const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
-})
-
-
-
 const LoginContainer = (props) => {
     const onSubmit = (formData) => {
         props.login(formData.login, formData.password, formData.rememberMe )
@@ -27,6 +21,10 @@ const LoginContainer = (props) => {
         </section>
     )
 };
+
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+})
 
 
 export default compose(connect(mapStateToProps, {login, logout}), withRouter)(LoginContainer)

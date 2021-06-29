@@ -4,6 +4,7 @@ import s from "./Header.module.css"
 import {NavLink} from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader";
 import UserAuthInfo from "./UserAuthInfo/UserAuthInfo";
+import Button from "../common/Button/Button";
 
 const Header = (props) => {
     return <header className={s.header}>
@@ -13,7 +14,7 @@ const Header = (props) => {
                 <UserAuthInfo logout={props.logout} card={props.card} />
                 :
                 <>{props.isFetching ? <Preloader height={30} />: <NavLink to={"/login"}>
-                        <button className={s.button}>Login</button>
+                        <Button value={"Login"} />
                     </NavLink>}</>}
 
 
