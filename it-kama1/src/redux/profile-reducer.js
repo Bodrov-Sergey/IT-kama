@@ -5,6 +5,7 @@ const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const UPLOAD_AVATAR_SUCCESS = "UPLOAD_AVATAR_SUCCESS";
 
 
 let initialState = {
@@ -63,6 +64,12 @@ const profileReducer = (state = initialState, action) => {
                 isFetching: action.bool
 
             }
+        case UPLOAD_AVATAR_SUCCESS:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.ava}
+
+            }
 
 
         default:
@@ -95,6 +102,12 @@ export const toggleIsFetching = (bool) => {
         bool
     }
 }
+export const uploadAvatarSuccess = (ava) => {
+    return {
+        type: UPLOAD_AVATAR_SUCCESS,
+        ava
+    }
+}
 export const getUser = (id) => {
     return async (dispatch) => {
         dispatch(toggleIsFetching(true))
@@ -115,6 +128,15 @@ export const updateStatus = (status) => {
         const response = await profileAPI.updateStatus(status)
         if (response.data.resultCode === 0) {
             dispatch(setUserStatus(status))
+        }
+
+    }
+}
+export const uploadAvatar = (ava) => {
+    return async (dispatch) => {
+        const response = await profileAPI.uploadAvatar(ava)
+        if (response.data.resultCode === 0) {
+            dispatch(uploadAvatarSuccess(response.data.data.photos))
         }
 
     }

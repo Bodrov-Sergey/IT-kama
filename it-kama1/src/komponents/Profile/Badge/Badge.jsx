@@ -3,17 +3,24 @@ import s from './Badge.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import baseAva from '../../../Icons/Profile.svg'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import {uploadAvatar} from "../../../redux/profile-reducer";
 
 const Badge =React.memo((props) => {
     window.scrollTo(0, 0)
+
+    const onAvaSelected = (e)=>{
+        e.target.files.length && props.uploadAvatar(e.target.files[0]);
+    }
+
     if (!props.isFetching && props.profile) {
 
         return <section className={s.badge}>
-            <img src={props.profile.photos.large ? props.profile.photos.large :baseAva} className={s.ava}/>
+            <div><img src={props.profile.photos.large || baseAva} className={s.ava}/>
+            {props.isOwner && <div><input type={"file"} onChange={onAvaSelected}/></div>}</div>
+
             <div className={s.personal}>
                 <h1 className={s.name}>{props.profile.fullName}</h1>
-                {/*<ProfileStatus content={props.profile.aboutMe} />*/}
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                <ProfileStatus isOwner={props.isOwner} status={props.status} updateStatus={props.updateStatus} />
                 <div className={s.infoContainer}>
                     <ul className={s.list}>
                         {props.profile.contacts.facebook?  <li className={s.itemPoint}>facebook:</li>: null}

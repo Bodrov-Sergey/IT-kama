@@ -17,21 +17,28 @@ const ProfileStatus = (props) => {
     }
     useEffect(()=>{setStatus(props.status)},[props.status])
 
-    return (
-        <section>
-            {editMode ?
-                <div>
-                    <input autoFocus={true} onBlur={deactivateEditMode} className={s.inputStatus}
-                           value={status} onChange={onStatusChange}/>
-                </div>
-                :
-                <div>
-                    <p onClick={activateEditMode} className={s.status}>{props.status}</p>
-                </div>
-            }
-        </section>
-    )
-
+    if (props.isOwner) {
+        return (
+            <section>
+                {editMode?
+                    <div>
+                        <input autoFocus={true} onBlur={deactivateEditMode} className={s.inputStatus}
+                               value={status} onChange={onStatusChange}/>
+                    </div>
+                    :
+                    <div>
+                        <p onClick={activateEditMode} className={s.status}>{props.status}</p>
+                    </div>
+                }
+            </section>
+        )
+    } else{
+        return (
+            <div>
+                <p onClick={activateEditMode} className={s.status}>{props.status}</p>
+            </div>
+        )
+    }
 
 }
 

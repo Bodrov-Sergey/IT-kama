@@ -22,7 +22,7 @@ const Login = (props) => {
             </div>
             <div className={s.buttonContainer}>
                 <Button value={"Sign in"} />
-                <NavLink to={"/signUp"} className={s.link}>No account? Sign up</NavLink>
+                <a href={"https://social-network.samuraijs.com/signUp"} target={"_blank"} className={s.link}>No account? Sign up</a>
             </div>
         </form>
     )
