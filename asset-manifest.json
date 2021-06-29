@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/IT-kama/static/css/main.a3c2acc5.chunk.css",
+    "main.js": "/IT-kama/static/js/main.42845b9b.chunk.js",
+    "main.js.map": "/IT-kama/static/js/main.42845b9b.chunk.js.map",
+    "runtime-main.js": "/IT-kama/static/js/runtime-main.83ea0269.js",
+    "runtime-main.js.map": "/IT-kama/static/js/runtime-main.83ea0269.js.map",
+    "static/js/2.b7d986b0.chunk.js": "/IT-kama/static/js/2.b7d986b0.chunk.js",
+    "static/js/2.b7d986b0.chunk.js.map": "/IT-kama/static/js/2.b7d986b0.chunk.js.map",
+    "static/css/3.f3124e9a.chunk.css": "/IT-kama/static/css/3.f3124e9a.chunk.css",
+    "static/js/3.d6cc10bf.chunk.js": "/IT-kama/static/js/3.d6cc10bf.chunk.js",
+    "static/js/3.d6cc10bf.chunk.js.map": "/IT-kama/static/js/3.d6cc10bf.chunk.js.map",
+    "static/js/4.04661fd5.chunk.js": "/IT-kama/static/js/4.04661fd5.chunk.js",
+    "static/js/4.04661fd5.chunk.js.map": "/IT-kama/static/js/4.04661fd5.chunk.js.map",
+    "index.html": "/IT-kama/index.html",
+    "static/css/3.f3124e9a.chunk.css.map": "/IT-kama/static/css/3.f3124e9a.chunk.css.map",
+    "static/css/main.a3c2acc5.chunk.css.map": "/IT-kama/static/css/main.a3c2acc5.chunk.css.map",
+    "static/js/2.b7d986b0.chunk.js.LICENSE.txt": "/IT-kama/static/js/2.b7d986b0.chunk.js.LICENSE.txt",
+    "static/media/Avatar.c5edef80.jpg": "/IT-kama/static/media/Avatar.c5edef80.jpg",
+    "static/media/Main-logo.967ee1b0.svg": "/IT-kama/static/media/Main-logo.967ee1b0.svg",
+    "static/media/Message.bbfaa137.svg": "/IT-kama/static/media/Message.bbfaa137.svg",
+    "static/media/Music.39b99780.svg": "/IT-kama/static/media/Music.39b99780.svg",
+    "static/media/News.a7255fc8.svg": "/IT-kama/static/media/News.a7255fc8.svg",
+    "static/media/People.1e9c04d6.svg": "/IT-kama/static/media/People.1e9c04d6.svg",
+    "static/media/Profile.svg": "/IT-kama/static/media/Profile.81d7b418.svg",
+    "static/media/Settings.0b120df2.svg": "/IT-kama/static/media/Settings.0b120df2.svg",
+    "static/media/download-anim.44fe423f.svg": "/IT-kama/static/media/download-anim.44fe423f.svg",
+    "static/media/left-arrow.c37d02d5.svg": "/IT-kama/static/media/left-arrow.c37d02d5.svg",
+    "static/media/like.665ede1a.svg": "/IT-kama/static/media/like.665ede1a.svg",
+    "static/media/right-arrow.b7f95d22.svg": "/IT-kama/static/media/right-arrow.b7f95d22.svg",
+    "static/media/search.8b35d769.svg": "/IT-kama/static/media/search.8b35d769.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.83ea0269.js",
+    "static/js/2.b7d986b0.chunk.js",
+    "static/css/main.a3c2acc5.chunk.css",
+    "static/js/main.42845b9b.chunk.js"
+  ]
+}
