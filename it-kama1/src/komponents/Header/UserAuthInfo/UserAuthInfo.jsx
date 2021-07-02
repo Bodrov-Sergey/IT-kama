@@ -9,11 +9,11 @@ const UserAuthInfo = (props) => {
     }
 
     if (props.card) {
-        return <div className={s.userInfo} onClick={toggleEditMode}>
+        return <div className={s.userInfo} onMouseEnter={toggleEditMode} onMouseLeave={toggleEditMode}>
             <h2 className={s.fullName}>{props.card.fullName}</h2>
             <img className={s.userAva} src={props.card.photos.small ? props.card.photos.small : baseAva}/>
             {editMode ? <div>
-                <div className={s.logout} onClick={props.logout}>Logout</div>
+                <div className={s.logout} onClick={props.logout} >Logout</div>
             </div> : <></>}
         </div>
     } else {

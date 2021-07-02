@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import s from './Badge.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import baseAva from '../../../Icons/Profile.svg'
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import {uploadAvatar} from "../../../redux/profile-reducer";
+import {toggleContactsEditMode} from "../../../redux/profile-reducer";
+import {ContactInfoForm} from "./ContactInfo/ContactInfo";
 
 const Badge =React.memo((props) => {
     window.scrollTo(0, 0)
@@ -12,41 +13,43 @@ const Badge =React.memo((props) => {
         e.target.files.length && props.uploadAvatar(e.target.files[0]);
     }
 
+    const toggleEditMode = ()=>{
+        props.toggleContactsEditMode(!props.contactsEditMode)
+    }
+
+
+    const httpConcater = (profile, key)=>{
+        return  profile.contacts[key][0]+profile.contacts[key][1]+profile.contacts[key][2]!="htt"?
+            "http://"+profile.contacts[key]:profile.contacts[key]
+    }
+
     if (!props.isFetching && props.profile) {
 
         return <section className={s.badge}>
-            <div><img src={props.profile.photos.large || baseAva} className={s.ava}/>
-            {props.isOwner && <div><input type={"file"} onChange={onAvaSelected}/></div>}</div>
+            <div className={s.avaContainer}><img src={props.profile.photos.large || baseAva} className={s.ava}/>
+            {props.isOwner && props.contactsEditMode && <div><label htmlFor={"avaUploader"} className={s.addAvaLabel}>Add new avatar</label><input className={s.addAva}  id={"avaUploader"} type={"file"} onChange={onAvaSelected}/>
+                </div>}</div>
 
             <div className={s.personal}>
-                <h1 className={s.name}>{props.profile.fullName}</h1>
+                {!props.contactsEditMode && <h1 className={s.name}>{props.profile.fullName}</h1>}
                 <ProfileStatus isOwner={props.isOwner} status={props.status} updateStatus={props.updateStatus} />
+                {!props.contactsEditMode?
                 <div className={s.infoContainer}>
-                    <ul className={s.list}>
-                        {props.profile.contacts.facebook?  <li className={s.itemPoint}>facebook:</li>: null}
-                        {props.profile.contacts.vk?  <li className={s.itemPoint}>vk:</li>: null}
-                        {props.profile.contacts.twitter?  <li className={s.itemPoint}>twitter:</li>: null}
-                        {props.profile.contacts.instagram?  <li className={s.itemPoint}>instagram:</li>: null}
-                        {props.profile.contacts.youtube?  <li className={s.itemPoint}>youtube:</li>: null}
-                        {props.profile.contacts.github?  <li className={s.itemPoint}>github:</li>: null}
-                        {props.profile.contacts.mainLink?  <li className={s.itemPoint}>mainLink:</li>: null}
-                        {props.profile.lookingForAJob ?  <li className={s.itemPoint}>Job looking status:</li>: null}
-
+                        {Object.keys(props.profile.contacts).filter(key=>{return props.profile.contacts[key] && key })
+                            .map(key=>{
+                            return <Contact contactTitle={key} contactValue={httpConcater(props.profile, key)}  key={key} />
+                        })}
+                    <ul className={s.contactContainer}>
+                        <li className={s.itemPoint}>Job looking status:</li>
+                        <li className={s.itemPoint}>{props.profile.lookingForAJobDescription || "Not looking for a job"}</li>
                     </ul>
-                    <ul className={s.list}>
-                        {props.profile.contacts.facebook?  <li className={s.itemPoint}><a className={s.links} href={props.profile.contacts.facebook}>click</a> </li>: null}
-                        {props.profile.contacts.vk?  <li className={s.itemPoint}><a className={s.links}  href={props.profile.contacts.vk}>click</a> </li>: null}
-                        {props.profile.contacts.twitter?  <li className={s.itemPoint}><a className={s.links} href={props.profile.contacts.twitter}>click</a> </li>: null}
-                        {props.profile.contacts.instagram?  <li className={s.itemPoint}><a className={s.links} href={props.profile.contacts.instagram}>click</a> </li>: null}
-                        {props.profile.contacts.youtube?  <li className={s.itemPoint}><a className={s.links} href={props.profile.contacts.youtube}>click</a> </li>: null}
-                        {props.profile.contacts.github?  <li className={s.itemPoint}><a className={s.links} href={props.profile.contacts.github}>click</a> </li>: null}
-                        {props.profile.contacts.mainLink?  <li className={s.itemPoint}><a className={s.links} href={props.profile.contacts.mainLink}>click</a> </li>: null}
-                        {props.profile.lookingForAJob?  <p>{props.profile.lookingForAJobDescription}</p>: null}
+                    {props.profile.aboutMe && <ul className={s.contactContainer}>
+                        <li className={s.itemPoint}>About me:</li>
+                        <li className={s.itemPoint}>{props.profile.aboutMe}</li>
+                    </ul>}
 
-                    </ul>
-                </div>
-                <div>
-                </div>
+                </div>: <ContactInfoForm initialValues={props.profile} profile={props.profile} onSubmit={props.onSubmitContacts}/>}
+                {props.isOwner && !props.contactsEditMode && <div className={s.changeProfileButton} onClick={toggleEditMode}>Change profile</div>}
             </div>
         </section>
     } else {
@@ -54,5 +57,12 @@ const Badge =React.memo((props) => {
     }
 
 })
+const Contact = ({contactTitle, contactValue})=>{
+    return<ul className={s.contactContainer}> <li className={s.itemPoint}>{contactTitle+":"}</li>
+        <li className={s.itemPoint}><a className={s.links} href={contactValue} target={"_blank"}>click</a> </li></ul>
+
+}
+
+
 
 export default Badge;

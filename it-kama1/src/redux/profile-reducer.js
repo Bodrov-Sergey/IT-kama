@@ -1,10 +1,12 @@
 import {profileAPI} from "../api/api";
-import {reset} from "redux-form";
+import {reset, stopSubmit} from "redux-form";
+import {parseError} from "../utilits/help-functions/reducersHelpFunctions";
 
 const ADD_NEW_POST = "ADD_NEW_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_CONTACTS_EDIT_MODE = "TOGGLE_CHANGE_CONTACTS_EDIT_MODE";
 const UPLOAD_AVATAR_SUCCESS = "UPLOAD_AVATAR_SUCCESS";
 
 
@@ -32,6 +34,7 @@ let initialState = {
     profile: null,
     isFetching: false,
     status: "",
+    contactsEditMode: false
 
 };
 
@@ -62,6 +65,12 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: action.bool
+
+            }
+        case TOGGLE_CONTACTS_EDIT_MODE:
+            return {
+                ...state,
+                contactsEditMode: action.bool
 
             }
         case UPLOAD_AVATAR_SUCCESS:
@@ -99,6 +108,12 @@ export const setUserStatus = (status) => {
 export const toggleIsFetching = (bool) => {
     return {
         type: TOGGLE_IS_FETCHING,
+        bool
+    }
+}
+export const toggleContactsEditModeSuccess = (bool) => {
+    return {
+        type: TOGGLE_CONTACTS_EDIT_MODE,
         bool
     }
 }
@@ -141,10 +156,29 @@ export const uploadAvatar = (ava) => {
 
     }
 }
+export const updateContactInfo = (profile) => {
+    return async (dispatch, getState) => {
+        const id = getState().auth.userId;
+        const response = await profileAPI.updateContactInfo(profile)
+        if (response.data.resultCode === 0) {
+            dispatch(toggleContactsEditMode(false));
+            dispatch(getUser(id))
+        } else{
+            const error = parseError(response.data.messages[0]);
+            dispatch(stopSubmit("contactInfo", {...error}));
+        }
+
+    }
+}
 export const updateWithNewPost = (post) => {
     return (dispatch) => {
         dispatch(addPost(post));
         dispatch(reset('newPost'));
+    }
+}
+export const toggleContactsEditMode = (bool) => {
+    return (dispatch) => {
+        dispatch(toggleContactsEditModeSuccess(bool));
     }
 }
 

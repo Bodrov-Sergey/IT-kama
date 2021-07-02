@@ -21,6 +21,16 @@ export const TextareaNewMessage = ({input, meta, ...props}) => {
 
 )
 }
+export const TextareaProfileInfo = ({input, meta, ...props}) => {
+    const hasError = meta.touched && meta.error;
+    return (
+        <div className={s.profileInfoContainer}>
+            <textarea className={s.profileInfo + ` ` + (hasError ? s.textareaError : "")} {...props} {...input} />
+            {hasError && <p className={s.errorMessage}>{meta.error}</p>}
+        </div>
+
+)
+}
 export const Input = ({input, meta, ...props}) => {
     const hasError = meta.touched && meta.error;
     return (

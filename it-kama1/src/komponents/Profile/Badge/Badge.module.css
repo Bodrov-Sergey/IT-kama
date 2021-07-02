@@ -1,67 +1,172 @@
-.badge{
+.badge {
     background-color: #FFFFFF;
     border-radius: 4px;
     display: grid;
-    grid-template: 1fr / auto 1fr ;
+    grid-template: 1fr / auto 1fr;
     padding: 15px 20px;
     margin-bottom: 15px;
 }
-.ava{
+
+.ava {
     width: 200px;
     height: 200px;
     object-fit: cover;
-    margin-right: 40px;
 
 }
-.personal{
+
+.personal {
+    height: 100%;
+    display: grid;
+    grid-template: auto auto 1fr auto/ 1fr;
 
 }
-.name{
+
+.name {
     font-size: 19px;
     padding-bottom: 15px;
 }
-.status{
+
+.status {
     padding: 5px;
     font-size: 15px;
     border-radius: 5px;
+    cursor: pointer;
+
 }
-.status:hover{
+
+.status:hover {
     background-color: #EDEEF0;
 }
-.inputStatus{
+
+.changeProfileButton {
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.changeProfileButton:hover {
+    background-color: #EDEEF0;
+}
+
+.inputStatus {
     padding: 5px;
     font-size: 15px;
     border: 1px solid #918CA9;
     border-radius: 5px;
 }
-.infoContainer{
+
+.infoContainer {
     padding-top: 10px;
-    display: flex;
-
 }
-.itemPoint{
-    font-size: 15px;
+
+.contactContainer {
+    width: 100%;
     margin-bottom: 10px;
-    color: #918CA9;
+    display: grid;
+    grid-template: auto/ 1fr 1fr;
+    grid-gap: 5px;
+}
 
+.itemPoint {
+    font-size: 15px;
+    color: #918CA9;
+    align-self: center;
+}
+
+.itemPoint:last-child {
+    color: black;
 
 }
-.links{
+
+.itemInput {
+    font-size: 15px;
+    border-radius: 4px;
+    border: 1px solid #918CA9;
+    padding: 5px;
+    width: 100%;
+
+}
+
+.links {
     color: black;
 }
-.itemAnswer{
+
+.itemAnswer {
     margin-bottom: 10px;
     font-size: 15px;
     color: #2A5885;
     cursor: pointer;
 }
-.list:first-child{
+
+.list:first-child {
     width: 165px;
 }
 
-.preloaderContainer{
+.preloaderContainer {
     display: flex;
     justify-content: center;
     background-color: white;
 
 }
+
+.buttonSubmitContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.checkboxProfileInfo {
+    margin-right: 5px;
+}
+
+
+.aboutMeTextarea {
+    width: 100%;
+    outline: none;
+    -moz-appearance: none;
+    resize: none;
+    font-size: 15px;
+    border-radius: 4px;
+    border: 1px solid #918CA9;
+    padding: 5px;
+    margin-bottom: 10px;
+
+}
+
+.aboutMeLabel {
+    font-size: 15px;
+    color: #918CA9;
+    margin-bottom: 10px;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.addAvaLabel {
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    background-color: #5181B8;
+    margin-top: 10px;
+}
+
+.avaContainer {
+    padding-right: 40px;
+
+}
+
+.addAva {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+

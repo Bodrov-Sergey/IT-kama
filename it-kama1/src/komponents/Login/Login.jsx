@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./Login.module.css"
 import {Field, reduxForm} from "redux-form";
-import {NavLink} from "react-router-dom";
 import {required} from "../../utilits/validators/validators.js";
 import {Input} from "../common/FormsControls/FormsControls";
 import Button from "../common/Button/Button";
