@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/IT-kama/static/css/main.88439763.chunk.css",
-    "main.js": "/IT-kama/static/js/main.da4861c0.chunk.js",
-    "main.js.map": "/IT-kama/static/js/main.da4861c0.chunk.js.map",
+    "main.css": "/IT-kama/static/css/main.22e15da7.chunk.css",
+    "main.js": "/IT-kama/static/js/main.cde0f034.chunk.js",
+    "main.js.map": "/IT-kama/static/js/main.cde0f034.chunk.js.map",
     "runtime-main.js": "/IT-kama/static/js/runtime-main.559cf9da.js",
     "runtime-main.js.map": "/IT-kama/static/js/runtime-main.559cf9da.js.map",
-    "static/js/2.06715a85.chunk.js": "/IT-kama/static/js/2.06715a85.chunk.js",
-    "static/js/2.06715a85.chunk.js.map": "/IT-kama/static/js/2.06715a85.chunk.js.map",
+    "static/js/2.f28b0404.chunk.js": "/IT-kama/static/js/2.f28b0404.chunk.js",
+    "static/js/2.f28b0404.chunk.js.map": "/IT-kama/static/js/2.f28b0404.chunk.js.map",
     "static/css/3.44346cfe.chunk.css": "/IT-kama/static/css/3.44346cfe.chunk.css",
     "static/js/3.46524dc4.chunk.js": "/IT-kama/static/js/3.46524dc4.chunk.js",
     "static/js/3.46524dc4.chunk.js.map": "/IT-kama/static/js/3.46524dc4.chunk.js.map",
@@ -14,8 +14,8 @@
     "static/js/4.7e17b1f7.chunk.js.map": "/IT-kama/static/js/4.7e17b1f7.chunk.js.map",
     "index.html": "/IT-kama/index.html",
     "static/css/3.44346cfe.chunk.css.map": "/IT-kama/static/css/3.44346cfe.chunk.css.map",
-    "static/css/main.88439763.chunk.css.map": "/IT-kama/static/css/main.88439763.chunk.css.map",
-    "static/js/2.06715a85.chunk.js.LICENSE.txt": "/IT-kama/static/js/2.06715a85.chunk.js.LICENSE.txt",
+    "static/css/main.22e15da7.chunk.css.map": "/IT-kama/static/css/main.22e15da7.chunk.css.map",
+    "static/js/2.f28b0404.chunk.js.LICENSE.txt": "/IT-kama/static/js/2.f28b0404.chunk.js.LICENSE.txt",
     "static/media/Avatar.c5edef80.jpg": "/IT-kama/static/media/Avatar.c5edef80.jpg",
     "static/media/Main-logo.967ee1b0.svg": "/IT-kama/static/media/Main-logo.967ee1b0.svg",
     "static/media/Message.bbfaa137.svg": "/IT-kama/static/media/Message.bbfaa137.svg",
@@ -32,8 +32,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.559cf9da.js",
-    "static/js/2.06715a85.chunk.js",
-    "static/css/main.88439763.chunk.css",
-    "static/js/main.da4861c0.chunk.js"
+    "static/js/2.f28b0404.chunk.js",
+    "static/css/main.22e15da7.chunk.css",
+    "static/js/main.cde0f034.chunk.js"
   ]
 }
