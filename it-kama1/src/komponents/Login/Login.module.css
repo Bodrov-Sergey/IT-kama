@@ -50,3 +50,9 @@
     font-size: 13px;
     margin-bottom: 15px;
 }
+.captchaInput{
+    border: 1px  solid #DCE1E6;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 15px;
+}

@@ -5,6 +5,7 @@ const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_IS_AUTH = "TOGGLE_IS_AUTH";
 const SET_CARD = "SET_CARD";
+const GET_CAPTCHA = "GET_CAPTCHA";
 
 let initialState = {
     userId: null,
@@ -12,7 +13,8 @@ let initialState = {
     login: null,
     isFetching: false,
     isAuth: false,
-    card: null
+    card: null,
+    captcha: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -22,6 +24,11 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.data
 
+            }
+        case GET_CAPTCHA:
+            return {
+                ...state,
+                captcha: action.captcha
             }
         case TOGGLE_IS_FETCHING:
             return {
@@ -64,6 +71,12 @@ export const setAuthUserData = (userId, email, login) => {
         data: {userId, email, login}
     }
 }
+export const getCaptchaSuccess = (captcha) => {
+    return {
+        type: GET_CAPTCHA,
+        captcha
+    }
+}
 export const setCard = (card) => {
     return {
         type: SET_CARD,
@@ -81,19 +94,29 @@ export const authMe = () => async (dispatch) => {
         dispatch(setCard(responseGetMe.data));
         dispatch(toggleIsFetching(false));
         dispatch(toggleIsAuth(true));
+        dispatch(getCaptchaSuccess(null));
     }
 
 }
 
-export const login = (email, password, rememberMe) => {
+export const login = (email, password, captcha=null, rememberMe=false) => {
     return async (dispatch) => {
-        const response = await authAPI.login(email, password, rememberMe);
+        const response = await authAPI.login(email, password, captcha, rememberMe);
         if (response.data.resultCode == 0) {
             dispatch(authMe())
         } else {
+            if(response.data.resultCode == 10){
+                dispatch(getCaptcha())
+            }
             let message = response.data.messages.length > 0 ? response.data.messages[0] : "Not reserved error"
             dispatch(stopSubmit("login", {_error: message}))
         }
+    }
+}
+export const getCaptcha = () => {
+    return async (dispatch) => {
+        const response = await authAPI.getCaptcha();
+        dispatch(getCaptchaSuccess(response.data.url))
     }
 }
 export const logout = () => {

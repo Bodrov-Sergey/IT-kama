@@ -40,6 +40,18 @@ const People = React.memo((props) => {
                     window.scrollTo(0, 0)
                 }}>1
                 </button>
+                {props.activePage - 2 > 1 && <button className={s.pageButton} onClick={() => {
+                    props.setActivePage(props.activePage - 2);
+                    window.scrollTo(0, 0)
+                }}>
+                    {props.activePage - 2}
+                </button>}
+                {props.activePage - 1 > 1 &&<button className={s.pageButton} onClick={() => {
+                    props.setActivePage(props.activePage - 1);
+                    window.scrollTo(0, 0)
+                }}>
+                    {props.activePage - 1}
+                </button>}
                 <div className={s.activePageCont}>
                     <img src={leftArrow} className={s.arrow} onClick={() => {
                         props.setPreviousPage();
@@ -51,10 +63,25 @@ const People = React.memo((props) => {
                         window.scrollTo(0, 0)
                     }}/>
                 </div>
+                {props.activePage + 1 < props.pages.length && <button className={s.pageButton} onClick={() => {
+                    props.setActivePage(props.activePage + 1);
+                    window.scrollTo(0, 0)
+                }}>
+                    {props.activePage + 1}
+                </button>}
+                {props.activePage + 2 < props.pages.length && <button className={s.pageButton} onClick={() => {
+                    props.setActivePage(props.activePage + 2);
+                    window.scrollTo(0, 0)
+                }}>
+                    {props.activePage + 2}
+                </button>}
+
                 <button className={s.pageButton} onClick={() => {
                     props.setActivePage(props.pages.length);
                     window.scrollTo(0, 0)
-                }}>{props.pages.length}</button>
+                }}>
+                    {props.pages.length}
+                </button>
             </div>
         </>
 

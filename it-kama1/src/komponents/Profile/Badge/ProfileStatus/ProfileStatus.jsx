@@ -27,7 +27,7 @@ const ProfileStatus = (props) => {
                     </div>
                     :
                     <div>
-                        <p onClick={activateEditMode} className={s.status}>{props.status}</p>
+                        <p onClick={activateEditMode} className={s.myStatus}>{props.status}</p>
                     </div>
                 }
             </section>

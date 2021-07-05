@@ -8,7 +8,7 @@ import {compose} from "redux";
 
 const LoginContainer = (props) => {
     const onSubmit = (formData) => {
-        props.login(formData.login, formData.password, formData.rememberMe )
+        props.login(formData.login, formData.password, formData.captcha, formData.rememberMe )
     }
     if (props.isAuth){
         return <Redirect to={"/profile"} />
@@ -17,13 +17,14 @@ const LoginContainer = (props) => {
     return (
         <section className={s.loginWrapper}>
             <h1 className={s.title}>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm captcha={props.captcha} onSubmit={onSubmit}/>
         </section>
     )
 };
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captcha: state.auth.captcha
 })
 
 

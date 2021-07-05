@@ -3,9 +3,11 @@ import s from "./../Badge.module.css"
 import {Field, reduxForm} from "redux-form";
 import {Input, TextareaProfileInfo} from "../../../common/FormsControls/FormsControls";
 import Button from "../../../common/Button/Button";
+import {maxLength} from "../../../../utilits/validators/validators";
+
+const maxLength300 = maxLength(100);
 
 const ContactInfo = (props) => {
-
 
     return <form onSubmit={props.handleSubmit} className={s.infoContainer}>
         <div className={s.contactContainer}>
@@ -28,7 +30,7 @@ const ContactInfo = (props) => {
                    name={"lookingForAJobDescription"}/>
         </div>
         <div className={s.aboutMeLabel}>About me:</div>
-        <Field placeholder={"aboutMe"} className={s.aboutMeTextarea} component={TextareaProfileInfo} name={"aboutMe"}/>
+        <Field placeholder={"aboutMe"} className={s.aboutMeTextarea} validate={[maxLength300]} component={TextareaProfileInfo} name={"aboutMe"}/>
         <div className={s.buttonSubmitContainer}><Button value={"Save"}/></div>
         <div className={s.errorMessage}>
             {props.error? props.error: ""}

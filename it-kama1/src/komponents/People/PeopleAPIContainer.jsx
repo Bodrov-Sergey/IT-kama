@@ -36,12 +36,12 @@ const PeopleAPIContainer = (props) => {
         <section className={s.users}>
             <div className={s.searchPanel}>
                 <img src={searchIco} alt="searchIcon" className={s.searchPanel__icon}/>
-                <input className={s.searchPanel__input} placeholder={"name..."}/>
+                <input className={s.searchPanel__input} placeholder={"DEVELOPING IN PROGRESS"}/>
                 <button className={s.searchPanel__button}>Find</button>
             </div>
             <div className={s.localHeader}>
                 <h1 className={s.mainTitle}>Following</h1>
-                <span className={s.counter}>{props.peopleData.length}</span>
+                <span className={s.counter}>"DEVELOPING IN PROGRESS"</span>
             </div>
             {props.isFetching ? <div className={s.preloaderContainer}><Preloader height={80}/></div> : null}
             <People peopleData={props.peopleData}

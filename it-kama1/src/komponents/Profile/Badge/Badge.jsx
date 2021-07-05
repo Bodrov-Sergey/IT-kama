@@ -43,10 +43,11 @@ const Badge =React.memo((props) => {
                         <li className={s.itemPoint}>Job looking status:</li>
                         <li className={s.itemPoint}>{props.profile.lookingForAJobDescription || "Not looking for a job"}</li>
                     </ul>
-                    {props.profile.aboutMe && <ul className={s.contactContainer}>
-                        <li className={s.itemPoint}>About me:</li>
-                        <li className={s.itemPoint}>{props.profile.aboutMe}</li>
+                    {props.profile.aboutMe && <ul className={s.aboutMeContainer}>
+                        <li className={s.aboutMeItem}>About me:</li>
+                        <div className={s.aboutMeItem}>{props.profile.aboutMe}</div>
                     </ul>}
+
 
                 </div>: <ContactInfoForm initialValues={props.profile} profile={props.profile} onSubmit={props.onSubmitContacts}/>}
                 {props.isOwner && !props.contactsEditMode && <div className={s.changeProfileButton} onClick={toggleEditMode}>Change profile</div>}

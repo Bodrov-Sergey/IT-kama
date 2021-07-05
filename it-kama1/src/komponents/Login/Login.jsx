@@ -16,6 +16,11 @@ const Login = (props) => {
                        type={"checkbox"}/>
                 <p className={s.rememberMeText}>Remember me</p>
             </div>
+            {props.captcha && <div>
+                <img src={props.captcha}/>
+                <Field validate={[required]} className={s.captchaInput} placeholder={"Text from image"} component={Input} name={"captcha"}/>
+            </div>
+            }
             <div className={s.errorMessage}>
             {props.error? props.error: ""}
             </div>
@@ -26,6 +31,4 @@ const Login = (props) => {
         </form>
     )
 }
-export const LoginReduxForm = reduxForm({
-    form: "login"
-})(Login)
+export const LoginReduxForm = reduxForm({form: "login"})(Login)

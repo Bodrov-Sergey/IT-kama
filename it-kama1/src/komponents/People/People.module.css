@@ -116,16 +116,22 @@
 
 }
 .pageButton{
-    width: 60px;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px 10px;
     font-size: 14px;
     background-color: #DCE1E6;
     border-radius: 4px;
+    margin: 0 10px;
+}
+.pageButton:last-child{
+    margin-left: 20px;
+}
+.pageButton:first-child{
+    margin-right: 20px;
 }
 .activePageCont{
     display: flex;
-    margin: 0 60px;
+    margin: 0 0px;
 }
 
 .arrow{
