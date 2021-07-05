@@ -7,7 +7,6 @@ import Button from "../common/Button/Button";
 
 const Login = (props) => {
     return (
-
         <form className={s.loginForm} onSubmit={props.handleSubmit}>
             <Field validate={[required]} placeholder={"Login"} component={Input} name={"login"}/>
             <Field validate={[required]} className={s.input} placeholder={"Password"} type={"password"} component={Input} name={"password"}/>
@@ -25,8 +24,8 @@ const Login = (props) => {
             {props.error? props.error: ""}
             </div>
             <div className={s.buttonContainer}>
-                <Button value={"Sign in"} />
-                <a href={"https://social-network.samuraijs.com/signUp"} target={"_blank"} className={s.link}>No account? Sign up</a>
+                <Button value={"Sign in"} disabled={props.disabled} />
+                <a href={"https://social-network.samuraijs.com/signUp"} target={"_blank"}  className={s.link}>No account? Sign up</a>
             </div>
         </form>
     )

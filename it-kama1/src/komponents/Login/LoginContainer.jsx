@@ -17,14 +17,15 @@ const LoginContainer = (props) => {
     return (
         <section className={s.loginWrapper}>
             <h1 className={s.title}>Login</h1>
-            <LoginReduxForm captcha={props.captcha} onSubmit={onSubmit}/>
+            <LoginReduxForm disabled={props.disabled} captcha={props.captcha} onSubmit={onSubmit}/>
         </section>
     )
 };
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,
-    captcha: state.auth.captcha
+    captcha: state.auth.captcha,
+    disabled: state.auth.disabled
 })
 
 
