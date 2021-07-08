@@ -2,12 +2,12 @@ import {profileAPI} from "../api/api";
 import {reset, stopSubmit} from "redux-form";
 import {parseError} from "../utilits/help-functions/reducersHelpFunctions";
 
-const ADD_NEW_POST = "ADD_NEW_POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS = "SET_STATUS";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const TOGGLE_CONTACTS_EDIT_MODE = "TOGGLE_CHANGE_CONTACTS_EDIT_MODE";
-const UPLOAD_AVATAR_SUCCESS = "UPLOAD_AVATAR_SUCCESS";
+const ADD_NEW_POST = "redux/profile/ADD_NEW_POST";
+const SET_USER_PROFILE = "redux/profile/SET_USER_PROFILE";
+const SET_STATUS = "redux/profile/SET_STATUS";
+const TOGGLE_IS_FETCHING = "redux/profile/TOGGLE_IS_FETCHING";
+const TOGGLE_CONTACTS_EDIT_MODE = "redux/profile/TOGGLE_CHANGE_CONTACTS_EDIT_MODE";
+const UPLOAD_AVATAR_SUCCESS = "redux/profile/UPLOAD_AVATAR_SUCCESS";
 
 
 let initialState = {

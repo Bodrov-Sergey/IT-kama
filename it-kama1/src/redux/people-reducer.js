@@ -1,13 +1,13 @@
 import {usersAPI} from "../api/api";
 import {updateObject} from "../utilits/help-functions/reducersHelpFunctions";
 
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_PEOPLE = "SET_PEOPLE";
-const SET_PAGES_COUNT = "SET_PAGES_COUNT";
-const SET_ACTIVE_PAGE = "SET_ACTIVE_PAGE";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const TOGGLE_DISABLED = "TOGGLE_DISABLED";
+const FOLLOW = "redux/people/FOLLOW";
+const UNFOLLOW = "redux/people/UNFOLLOW";
+const SET_PEOPLE = "redux/people/SET_PEOPLE";
+const SET_PAGES_COUNT = "redux/people/SET_PAGES_COUNT";
+const SET_ACTIVE_PAGE = "redux/people/SET_ACTIVE_PAGE";
+const TOGGLE_IS_FETCHING = "redux/people/TOGGLE_IS_FETCHING";
+const TOGGLE_DISABLED = "redux/people/TOGGLE_DISABLED";
 
 
 let initialState = {

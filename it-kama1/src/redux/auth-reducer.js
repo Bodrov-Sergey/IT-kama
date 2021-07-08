@@ -1,12 +1,12 @@
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
-const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const TOGGLE_DISABLED = "TOGGLE_DISABLED";
-const TOGGLE_IS_AUTH = "TOGGLE_IS_AUTH";
-const SET_CARD = "SET_CARD";
-const GET_CAPTCHA = "GET_CAPTCHA";
+const SET_AUTH_USER_DATA = "redux/auth/SET_AUTH_USER_DATA";
+const TOGGLE_IS_FETCHING = "redux/auth/TOGGLE_IS_FETCHING";
+const TOGGLE_DISABLED = "redux/auth/TOGGLE_DISABLED";
+const TOGGLE_IS_AUTH = "redux/auth/TOGGLE_IS_AUTH";
+const SET_CARD = "redux/auth/SET_CARD";
+const GET_CAPTCHA = "redux/auth/GET_CAPTCHA";
 
 let initialState = {
     userId: null,

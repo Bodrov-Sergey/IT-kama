@@ -1,6 +1,6 @@
 import {authMe} from "./auth-reducer";
 
-const TOGGLE_INITIALIZED = "TOGGLE_INITIALIZED";
+const TOGGLE_INITIALIZED = "redux/app/TOGGLE_INITIALIZED";
 
 let initialState = {
     initialized: false

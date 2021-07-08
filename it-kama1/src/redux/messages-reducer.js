@@ -1,6 +1,6 @@
 import {reset} from "redux-form";
 
-const SEND_MESSAGE = "SEND_MESSAGE";
+const SEND_MESSAGE = "redux/messages/SEND_MESSAGE";
 
 let initialState = {
     messagesData: [
